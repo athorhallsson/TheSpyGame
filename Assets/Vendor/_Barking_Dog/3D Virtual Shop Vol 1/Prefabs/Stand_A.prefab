@@ -10,7 +10,7 @@ GameObject:
   - component: {fileID: 405844}
   - component: {fileID: 3352718}
   - component: {fileID: 2309002}
-  - component: {fileID: 64152850999313750}
+  - component: {fileID: 65285904258367400}
   m_Layer: 0
   m_Name: Stand_A
   m_TagString: Untagged
@@ -71,7 +71,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 167938}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: -4.232, y: 0, z: 8.434}
+  m_LocalPosition: {x: 1.52, y: 0, z: 4.824}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 405844}
@@ -182,8 +182,8 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 167938}
   m_IsPrefabParent: 1
---- !u!64 &64152850999313750
-MeshCollider:
+--- !u!65 &65285904258367400
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -192,7 +192,5 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: de228474012d04abd81178c62689f487, type: 3}
+  m_Size: {x: 0.8343061, y: 3.4127588, z: 1.7122012}
+  m_Center: {x: -0.41713232, y: 0.00000017881392, z: 0.85610086}

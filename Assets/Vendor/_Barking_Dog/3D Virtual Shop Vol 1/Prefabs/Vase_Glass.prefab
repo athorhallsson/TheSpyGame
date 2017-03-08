@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 470712}
   - component: {fileID: 3366272}
   - component: {fileID: 2377992}
+  - component: {fileID: 65663841663309418}
   m_Layer: 0
   m_Name: Vase_Glass
   m_TagString: Untagged
@@ -109,3 +110,15 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 168742}
   m_IsPrefabParent: 1
+--- !u!65 &65663841663309418
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 195692}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 0.28, z: 2.58}
+  m_Center: {x: -0.03, y: 0, z: 1.3170005}

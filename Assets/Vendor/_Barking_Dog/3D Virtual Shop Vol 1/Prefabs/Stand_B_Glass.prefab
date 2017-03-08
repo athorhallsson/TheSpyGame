@@ -10,7 +10,7 @@ GameObject:
   - component: {fileID: 412484}
   - component: {fileID: 3373796}
   - component: {fileID: 2334546}
-  - component: {fileID: 64639875414529260}
+  - component: {fileID: 65618863800292572}
   m_Layer: 0
   m_Name: Stand_B
   m_TagString: Untagged
@@ -505,8 +505,8 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 133436}
   m_IsPrefabParent: 1
---- !u!64 &64639875414529260
-MeshCollider:
+--- !u!65 &65618863800292572
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -515,7 +515,5 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 67b753691420d44f0aa0cd93a89d2f63, type: 3}
+  m_Size: {x: 0.83495224, y: 0.39046577, z: 1.8421228}
+  m_Center: {x: -0.000000029802322, y: 0, z: 0.92106164}

@@ -2992,26 +2992,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 81
       objectReference: {fileID: 0}
-    - target: {fileID: 160986, guid: fa87499d9cc1840f48f5909686501508, type: 2}
-      propertyPath: m_Name
-      value: Stand_B
-      objectReference: {fileID: 0}
-    - target: {fileID: 454612, guid: fa87499d9cc1840f48f5909686501508, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 454612, guid: fa87499d9cc1840f48f5909686501508, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 149842, guid: fa87499d9cc1840f48f5909686501508, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 189170, guid: fa87499d9cc1840f48f5909686501508, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fa87499d9cc1840f48f5909686501508, type: 2}
   m_IsPrefabParent: 0
@@ -5020,18 +5000,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 136
       objectReference: {fileID: 0}
-    - target: {fileID: 133812, guid: b406e848ad0fe4001a5719aba5886e6a, type: 2}
-      propertyPath: m_Name
-      value: Chair_Simple
-      objectReference: {fileID: 0}
-    - target: {fileID: 422616, guid: b406e848ad0fe4001a5719aba5886e6a, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 422616, guid: b406e848ad0fe4001a5719aba5886e6a, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b406e848ad0fe4001a5719aba5886e6a, type: 2}
   m_IsPrefabParent: 0
@@ -6914,24 +6882,6 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 472172, guid: 9b6cb841e3ed44382bdcef1d39321ec9, type: 2}
   m_PrefabInternal: {fileID: 1485785117}
---- !u!1 &1485880605 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 141966, guid: fa87499d9cc1840f48f5909686501508, type: 2}
-  m_PrefabInternal: {fileID: 536527245}
---- !u!64 &1485880609
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1485880605}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 67b753691420d44f0aa0cd93a89d2f63, type: 3}
 --- !u!1001 &1495614801
 Prefab:
   m_ObjectHideFlags: 0

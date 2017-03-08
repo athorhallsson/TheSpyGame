@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3393608}
   - component: {fileID: 2395748}
   - component: {fileID: 6551270}
-  - component: {fileID: 64572309979449348}
   m_Layer: 0
   m_Name: Shelf_A
   m_TagString: Untagged
@@ -123,17 +122,3 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 133516}
   m_IsPrefabParent: 1
---- !u!64 &64572309979449348
-MeshCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 113076}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_InflateMesh: 0
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 4300000, guid: 0b8794620754f4412be56f7e3624fc1c, type: 3}

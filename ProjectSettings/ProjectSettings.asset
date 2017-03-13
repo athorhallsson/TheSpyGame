@@ -467,8 +467,9 @@ PlayerSettings:
   XboxOneAllowedProductIds: []
   XboxOnePersistentLocalStorageSize: 0
   vrEditorSettings: {}
-  cloudServicesEnabled: {}
-  cloudProjectId: 
-  projectName: 
-  organizationId: 
+  cloudServicesEnabled:
+    UNet: 1
+  cloudProjectId: d510f7fa-8dca-44c1-af1b-fbf0fe48fa9d
+  projectName: TheSpyGame
+  organizationId: athorhallsson
   cloudEnabled: 0

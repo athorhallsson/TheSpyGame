@@ -112,9 +112,9 @@ public class Player : NetworkBehaviour
 
 		if (isLocalPlayer) {
 			if (Mathf.Abs(Input.GetAxis ("Vertical")) + Mathf.Abs(Input.GetAxis ("Horizontal")) > 0.001f) {
-				anim.animator.SetBool ("Walking", true);
+//				anim.animator.SetBool ("Walking", true);
 			} else {
-				anim.animator.SetBool ("Walking", false);
+//				anim.animator.SetBool ("Walking", false);
 			}
 		}
 

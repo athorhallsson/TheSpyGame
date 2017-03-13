@@ -12,7 +12,7 @@ public class PlayerShooting : NetworkBehaviour
 
 	void Start()
 	{
-		shotEffects.Initialize ();
+//		shotEffects.Initialize ();
 
 		if (isLocalPlayer)
 			canShoot = true;

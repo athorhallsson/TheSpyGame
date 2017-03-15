@@ -44,8 +44,10 @@ public class Player : NetworkBehaviour
 
 	void DisablePlayer()
 	{
-		if (isLocalPlayer)
+		if (isLocalPlayer) {
 			mainCamera.SetActive (true);
+			this.GetComponentInChildren<Camera> ().enabled = false;
+		}
 
 		onToggleShared.Invoke (false);
 
@@ -61,6 +63,9 @@ public class Player : NetworkBehaviour
 	{
 		if (isLocalPlayer) {
 			mainCamera.SetActive (false);
+
+			this.GetComponentInChildren<Camera> ().enabled = true;
+
 			AudioListener audio = this.GetComponentInChildren<AudioListener> ();
 			if (audio != null) {
 				audio.enabled = true;

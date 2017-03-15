@@ -3,7 +3,6 @@ using UnityEngine.Networking;
 using UnityEngine.Events;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.FirstPerson;
-using Panda;
 
 [System.Serializable]
 public class ToggleEvent : UnityEvent<bool>{}
@@ -81,7 +80,6 @@ public class Player : NetworkBehaviour
 	}
 
 	public void Die() {
-		this.GetComponent<PandaBehaviour> ().enabled = false;
 		this.GetComponent<NavMeshAgent> ().enabled = false;
 
 		anim.SetTrigger( "Death");
@@ -131,7 +129,6 @@ public class Player : NetworkBehaviour
 			agent.enabled = true;
 			agent.avoidancePriority = Random.Range(1, 100);
 			nav.enabled = true;
-			this.GetComponent<PandaBehaviour> ().enabled = true;
 		}
 	}
 }

@@ -23,6 +23,8 @@ GameObject:
   - component: {fileID: 114263184979880876}
   - component: {fileID: 114910685289423518}
   - component: {fileID: 195380297134339554}
+  - component: {fileID: 95833625219528618}
+  - component: {fileID: 114968188992979590}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Untagged
@@ -37,12 +39,29 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1054137126626504}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.782085, y: 1.0795794, z: -10.097363}
+  m_LocalPosition: {x: 1.782085, y: 0, z: -10.097363}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &95833625219528618
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054137126626504}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114263184979880876
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -108,6 +127,9 @@ MonoBehaviour:
   - {fileID: 1000012454988468, guid: 924fe1c1b8c99cb4fb6d3f4c93640f83, type: 2}
   - {fileID: 1000011842454740, guid: 7ccfac0fbdd4e70409ad8bbc280d23c5, type: 2}
   model: {fileID: 0}
+  currentState: 
+  debugInfo: 
+  debugObject: {fileID: 0}
 --- !u!114 &114910685289423518
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,6 +150,25 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 1
   m_InterpolateMovement: 1
+--- !u!114 &114968188992979590
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054137126626504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1590678366, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Animator: {fileID: 0}
+  m_ParameterSendBits: 0
+  param0: 
+  param1: 
+  param2: 
+  param3: 
+  param4: 
+  param5: 
 --- !u!195 &195380297134339554
 NavMeshAgent:
   m_ObjectHideFlags: 1
@@ -135,16 +176,16 @@ NavMeshAgent:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1054137126626504}
   m_Enabled: 1
-  m_Radius: 0.5
-  m_Speed: 3.5
+  m_Radius: 0.18
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 80
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2
+  m_Height: 1.8
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

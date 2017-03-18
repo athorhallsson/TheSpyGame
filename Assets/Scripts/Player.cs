@@ -18,7 +18,6 @@ public class Player : NetworkBehaviour
 	private Camera fpsCamera;
 	private AudioListener fpsAudio;
 	private FirstPersonController firstPersonController;
-
 	GameObject mainCamera;
 
 	// Bots

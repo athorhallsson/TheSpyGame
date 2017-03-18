@@ -7,11 +7,13 @@ public class PlayerShooting : NetworkBehaviour
 	[SerializeField] Transform firePosition;
 	[SerializeField] ShotEffectsManager shotEffects;
 
+    private NetworkAnimator parentPlayerAnim;
 	float elapsedTime;
 	bool canShoot;
 
 	void Start() {
-//		shotEffects.Initialize ();
+        //		shotEffects.Initialize ();
+        parentPlayerAnim = GetComponentInParent<NetworkAnimator>();
 		elapsedTime = 0f;
 		if (isLocalPlayer) {
 			canShoot = true;
@@ -35,10 +37,10 @@ public class PlayerShooting : NetworkBehaviour
 
 	[Command]
 	void CmdFireShot(Vector3 origin, Vector3 direction) {
-		RaycastHit hit;
-
+        this.parentPlayerAnim.SetTrigger("Shooting");
+        RaycastHit hit;
 		Ray ray = new Ray (origin, direction);
-		Debug.DrawRay (ray.origin, ray.direction * 3f, Color.red, 1f);
+		Debug.DrawRay    (ray.origin, ray.direction * 3f, Color.red, 1f);
 
 		bool result = Physics.Raycast (ray, out hit, 50f);
 

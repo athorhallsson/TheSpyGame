@@ -888,7 +888,7 @@ MonoBehaviour:
   model: {fileID: 0}
   modelNumber: -1
   botPrefab: {fileID: 1054137126626504, guid: 51644c26e9a6e4970bba6a0573007442, type: 2}
-  botCount: 2
+  botCount: 12
 --- !u!114 &114506053191735868
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -6,12 +6,15 @@ public class PlayerShooting : NetworkBehaviour
 	[SerializeField] float shotCooldown;
 	[SerializeField] Transform firePosition;
 	[SerializeField] ShotEffectsManager shotEffects;
+	[SerializeField] GameObject gun;
 
+	private NetworkAnimator parentPlayerAnim;
 	float elapsedTime;
 	bool canShoot;
 
 	void Start() {
-//		shotEffects.Initialize ();
+		parentPlayerAnim = GetComponentInParent<NetworkAnimator>();
+
 		elapsedTime = 0f;
 		if (isLocalPlayer) {
 			canShoot = true;
@@ -22,23 +25,26 @@ public class PlayerShooting : NetworkBehaviour
 		if (!canShoot) {
 			return;
 		}
-			
+
 		elapsedTime += Time.deltaTime;
 
 		if (Input.GetButtonDown ("Fire1")) {
 			if (elapsedTime > shotCooldown) {
 				elapsedTime = 0f;
+				this.parentPlayerAnim.SetTrigger("Shooting");
 				CmdFireShot (firePosition.position, firePosition.forward);
 			}
 		}
 	}
 
-	[Command]
-	void CmdFireShot(Vector3 origin, Vector3 direction) {
-		RaycastHit hit;
+	// Shooting
+	private void FireGun() {
+		Vector3 origin = firePosition.position;
+		Vector3 direction = firePosition.forward;
 
+		RaycastHit hit;
 		Ray ray = new Ray (origin, direction);
-		Debug.DrawRay (ray.origin, ray.direction * 3f, Color.red, 1f);
+		Debug.DrawRay    (ray.origin, ray.direction * 3f, Color.red, 1f);
 
 		bool result = Physics.Raycast (ray, out hit, 50f);
 
@@ -49,15 +55,25 @@ public class PlayerShooting : NetworkBehaviour
 			}
 		}
 
-		// Make the bots panic
-//		GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
-//		foreach (GameObject player in players) {
-//			if (player.GetComponent<Player>().isBot()) {
-//				player.GetComponent<Navigation> ().Panic ();
-//			}
-//		}
-
 		RpcProcessShotEffects (result, hit.point);
+	}
+
+	[Command]
+	void CmdFireShot(Vector3 origin, Vector3 direction) {
+		RpcDrawGun();
+		Invoke("FireGun", 2.0f);
+	}
+
+	private void UpdateGunParent() {
+		Transform hand = this.GetComponent<Player>().model.transform.Find("master/Reference/Hips/Spine/Spine1/Spine2/RightShoulder/RightArm/RightForeArm/RightHand");
+		gun.transform.parent = hand;
+		gun.transform.localPosition = new Vector3(0f, 0f, 0f);
+	}
+
+	[ClientRpc]
+	void RpcDrawGun() {
+		UpdateGunParent();
+		gun.SetActive(true);
 	}
 
 	[ClientRpc]

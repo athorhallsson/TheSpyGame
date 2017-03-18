@@ -25,7 +25,6 @@ GameObject:
   - component: {fileID: 195380297134339554}
   - component: {fileID: 95833625219528618}
   - component: {fileID: 114968188992979590}
-  - component: {fileID: 148333465306261976}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Untagged
@@ -94,7 +93,7 @@ MonoBehaviour:
     i14: 116
     i15: 66
   m_ServerOnly: 0
-  m_LocalPlayerAuthority: 1
+  m_LocalPlayerAuthority: 0
 --- !u!114 &114481318351895328
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -143,13 +142,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: 0.1
-  m_SyncRotationAxis: 7
+  m_SendInterval: 0.0625
+  m_SyncRotationAxis: 2
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
-  m_MovementTheshold: 0.001
+  m_MovementTheshold: 0.1
   m_SnapThreshold: 5
-  m_InterpolateRotation: 1
+  m_InterpolateRotation: 15
   m_InterpolateMovement: 1
 --- !u!114 &114968188992979590
 MonoBehaviour:
@@ -170,18 +169,6 @@ MonoBehaviour:
   param3: 
   param4: 
   param5: 
---- !u!148 &148333465306261976
-NetworkView:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1054137126626504}
-  m_Enabled: 1
-  m_StateSynchronization: 1
-  m_Observed: {fileID: 4562928484942570}
-  m_ViewID:
-    m_ID: 0
-    m_Type: 0
 --- !u!195 &195380297134339554
 NavMeshAgent:
   m_ObjectHideFlags: 1

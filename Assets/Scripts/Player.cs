@@ -124,7 +124,11 @@ public class Player : NetworkBehaviour
 	private void CmdSpawnBot() {
 		Transform spawnPoint = NetworkManager.singleton.GetStartPosition();
 		GameObject bot = Instantiate(botPrefab, spawnPoint.position, Quaternion.identity);
-		NetworkServer.SpawnWithClientAuthority(bot, connectionToClient);
+
+		bot.GetComponent<Bot>().ResetModelNumber();
+
+		NetworkServer.Spawn(bot);
+		// NetworkServer.SpawnWithClientAuthority(bot, connectionToClient);
 	}
 }
 

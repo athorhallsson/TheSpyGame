@@ -10,6 +10,9 @@ public class Bot : NetworkBehaviour {
 	[SerializeField] GameObject[] models;
 	[SerializeField] GameObject model;
 
+	[SyncVar(hook="OnChangeModelNumber")]
+	public int modelNumber = -1;
+
 	private GameObject[] goals;
 	private NavMeshAgent agent;
 	private NetworkAnimator anim;
@@ -26,41 +29,51 @@ public class Bot : NetworkBehaviour {
 	public GameObject debugObject;
 
 	private enum States {
+		Building,
 		Deciding,
 		Idle,
 		Walking,
 		Looking
 	}
 
-	// Main ----------k---------------------------------------------------------
+	// Main --------------------------------------------------------------------
 	void Awake() {
 		agent = GetComponent<NavMeshAgent>();
-		anim = GetComponent<NetworkAnimator>();
 		ident = GetComponent<NetworkIdentity>();
 
-		ChooseModel();
+		anim = GetComponent<NetworkAnimator>();
+		anim.enabled = false;
+
 		FindGoals();
 	}
 
 	void Start() {
-		if (ident.localPlayerAuthority) {
+		if (ident.hasAuthority) {
 			fsm = StateMachine<States>.Initialize(this);
-			fsm.ChangeState(States.Deciding);
+			fsm.ChangeState(States.Building);
+		} else {
 		}
 	}
 
 	void LateUpdate() {
-		if (ident.localPlayerAuthority) {
+		if (ident.hasAuthority) {
 			currentState = fsm.State.ToString();
 		}
 	}
 
 	// Random Models ----------------------------------------------------------
-	private void ChooseModel() {
-		GameObject modelPrefab = models[Random.Range(0, models.Length)];
+	public void ResetModelNumber() {
+		modelNumber = Random.Range(0, models.Length);
+	}
+
+	public void OnChangeModelNumber(int newModelNumber) {
+		modelNumber = newModelNumber;
+		GameObject modelPrefab = models[modelNumber];
 		model = Instantiate(modelPrefab, this.transform.position, Quaternion.identity);
 		model.transform.parent = this.transform;
-		this.anim.animator = model.GetComponent<Animator>();
+
+		anim.animator = model.GetComponent<Animator>();
+		anim.enabled = true;
 	}
 
 	// Navigation -------------------------------------------------------------
@@ -84,6 +97,13 @@ public class Bot : NetworkBehaviour {
 	}
 
 	// AI State Machine -------------------------------------------------------
+	// Building
+	void Building_Update() {
+		if (modelNumber != -1) {
+			fsm.ChangeState(States.Deciding);
+		}
+	}
+
 	// Deciding
 	void Deciding_Enter() {
 		switch (Random.Range(0, 3)) {

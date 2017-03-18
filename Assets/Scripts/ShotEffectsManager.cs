@@ -10,14 +10,12 @@ public class ShotEffectsManager : MonoBehaviour
 	ParticleSystem impactEffect;
 
 	//Create the impact effect for our shots
-	public void Initialize()
-	{
+	public void Initialize() {
 		//impactEffect = Instantiate(impactPrefab).GetComponent<ParticleSystem>();
 	}
 
 	//Play muzzle flash and audio
-	public void PlayShotEffects()
-	{
+	public void PlayShotEffects() {
 		muzzleFlash.Stop(true);
 		muzzleFlash.Play(true);
 		gunAudio.Stop();
@@ -25,8 +23,7 @@ public class ShotEffectsManager : MonoBehaviour
 	}
 
 	//Play impact effect and target position
-	//	public void PlayImpactEffect(Vector3 impactPosition)
-	//	{
+	//	public void PlayImpactEffect(Vector3 impactPosition) {
 	//		impactEffect.transform.position = impactPosition;   
 	//		impactEffect.Stop();
 	//		impactEffect.Play();

@@ -9,7 +9,6 @@ using MonsterLove.StateMachine;
 public class Bot : NetworkBehaviour {
 	[SerializeField] GameObject[] models;
 	[SerializeField] GameObject model;
-
 	[SyncVar] public int modelNumber = -1;
 	private bool modelReady = false;
 
@@ -33,7 +32,8 @@ public class Bot : NetworkBehaviour {
 		Deciding,
 		Idle,
 		Walking,
-		Looking
+		Looking,
+		Dead
 	}
 
 	// Main --------------------------------------------------------------------
@@ -165,5 +165,9 @@ public class Bot : NetworkBehaviour {
 		} else {
 			fsm.ChangeState(States.Deciding);
 		}
+	}
+
+	public void Die() {
+		anim.animator.SetTrigger( "Death");
 	}
 }

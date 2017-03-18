@@ -10,6 +10,8 @@ public class Player : NetworkBehaviour
 
 	[SerializeField] GameObject[] models;
 	[SerializeField] GameObject model;
+	[SyncVar] public int modelNumber = -1;
+	private bool modelReady = false;
 
 	private NetworkAnimator anim;
 
@@ -27,7 +29,6 @@ public class Player : NetworkBehaviour
 
 	void Awake() {
 		anim = this.GetComponent<NetworkAnimator>();
-		ChooseModel();
 //		GameObject body = this.GetComponent<Body>().GetBody();
 //		body.transform.position = transform.position;
 //		body.transform.position += new Vector3(0f, -1f, 0f);
@@ -38,11 +39,10 @@ public class Player : NetworkBehaviour
 		fpsCamera = this.GetComponentInChildren<Camera> ();
 		fpsAudio = this.GetComponentInChildren<AudioListener> ();
 		firstPersonController = this.GetComponent<FirstPersonController> ();
-		anim.animator = model.GetComponent<Animator>();
 	}
 
-	private void ChooseModel() {
-		GameObject modelPrefab = models[Random.Range(0, models.Length)];
+	private void SetModel(int number) {
+		GameObject modelPrefab = models[number];
 		model = Instantiate(modelPrefab, new Vector3(this.transform.position.x, this.transform.position.y - 0.9f, this.transform.position.z ), Quaternion.identity);
 		model.transform.parent = this.transform;
 		this.anim.animator = model.GetComponent<Animator>();
@@ -77,6 +77,7 @@ public class Player : NetworkBehaviour
 			fpsCamera.enabled = true;
 			fpsAudio.enabled = true;
 			firstPersonController.enabled = true;
+			CmdResetModel();
 		}
 
 		playerShooting.enabled = true;
@@ -106,6 +107,11 @@ public class Player : NetworkBehaviour
 	}
 
 	void Update() {
+		if (!modelReady && modelNumber >= 0) {
+			SetModel(modelNumber);
+			modelReady = true;
+		}
+
 		if (isLocalPlayer) {
 			if (Mathf.Abs(Input.GetAxis ("Vertical")) + Mathf.Abs(Input.GetAxis ("Horizontal")) > 0.001f) {
 				anim.animator.SetBool ("Walking", true);
@@ -115,9 +121,9 @@ public class Player : NetworkBehaviour
 		}
 	}
 
-	[ServerCallback]
-	private void InitializePlayer() {
-
+	[Command]
+	private void CmdResetModel() {
+		modelNumber = Random.Range(0, models.Length);
 	}
 
 	[Command]

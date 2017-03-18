@@ -9,7 +9,6 @@ using MonsterLove.StateMachine;
 public class Bot : NetworkBehaviour {
 	[SerializeField] GameObject[] models;
 	[SerializeField] GameObject model;
-
 	[SyncVar] public int modelNumber = -1;
 	private bool modelReady = false;
 

@@ -4,103 +4,88 @@ using UnityEngine.Events;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.FirstPerson;
 
-[System.Serializable]
-public class ToggleEvent : UnityEvent<bool>{}
-
 public class Player : NetworkBehaviour 
 {
-	[SerializeField] ToggleEvent onToggleShared;
-	[SerializeField] ToggleEvent onToggleLocal;
-	[SerializeField] ToggleEvent onToggleRemote;
 	[SerializeField] float respawnTime;
 
+	[SerializeField] GameObject[] models;
+	[SerializeField] GameObject model;
+
 	private NetworkAnimator anim;
-	private BotNavigation nav;
-	private NavMeshAgent agent;
-	private NavMeshObstacle obstacle;
+
+	private PlayerShooting playerShooting;
+	private PlayerHealth playerHealth;
+	private Camera fpsCamera;
+	private AudioListener fpsAudio;
+	private FirstPersonController firstPersonController;
 
 	GameObject mainCamera;
 
 	void Awake() {
-	//	GameObject body = this.GetComponent<Body>().GetBody();
+		anim = this.GetComponent<NetworkAnimator>();
+		ChooseModel();
+//		GameObject body = this.GetComponent<Body>().GetBody();
 //		body.transform.position = transform.position;
 //		body.transform.position += new Vector3(0f, -1f, 0f);
 //		body.transform.parent = transform;
 
-		nav = this.GetComponent<BotNavigation>();
-		agent = this.GetComponent<NavMeshAgent> ();
-		obstacle = this.GetComponent<NavMeshObstacle> ();
-//		anim = this.GetComponent<NetworkAnimator>();
-//		anim.animator = body.GetComponent<Animator>();
-//		nav.anim = anim;
+		playerShooting = this.GetComponent<PlayerShooting> ();
+		playerHealth = this.GetComponent<PlayerHealth> ();
+		fpsCamera = this.GetComponentInChildren<Camera> ();
+		fpsAudio = this.GetComponentInChildren<AudioListener> ();
+		firstPersonController = this.GetComponent<FirstPersonController> ();
+		anim.animator = model.GetComponent<Animator>();
 	}
 
-	void Start()
-	{
+	private void ChooseModel() {
+		GameObject modelPrefab = models[Random.Range(0, models.Length)];
+		model = Instantiate(modelPrefab, new Vector3(this.transform.position.x, this.transform.position.y - 0.9f, this.transform.position.z ), Quaternion.identity);
+		model.transform.parent = this.transform;
+		this.anim.animator = model.GetComponent<Animator>();
+	}
+
+	void Start() {
 		mainCamera = Camera.main.gameObject;
 		EnablePlayer ();
-		InitializePlayer ();
 	}
 
-	void DisablePlayer()
-	{
+	void DisablePlayer() {
+		playerShooting.enabled = false;
+		playerHealth.enabled = false;
+
 		if (isLocalPlayer) {
+			this.firstPersonController.enabled = false;
 			mainCamera.SetActive (true);
-			this.GetComponentInChildren<Camera> ().enabled = false;
+			fpsCamera.enabled = false;
 		}
-
-		onToggleShared.Invoke (false);
-
-		if (isLocalPlayer)
-			onToggleLocal.Invoke (false);
-		else
-			onToggleRemote.Invoke (false);
-
-		this.GetComponent<FirstPersonController>().enabled = false;
+		//onToggleRemote.Invoke (false);
 	}
 
-	void EnablePlayer()
-	{
+	void EnablePlayer() {
 		if (isLocalPlayer) {
 			mainCamera.SetActive (false);
-
-			this.GetComponentInChildren<Camera> ().enabled = true;
-
-			AudioListener audio = this.GetComponentInChildren<AudioListener> ();
-			if (audio != null) {
-				audio.enabled = true;
-			}
-			this.GetComponent<FirstPersonController>().enabled = true;
+			fpsCamera.enabled = true;
+			fpsAudio.enabled = true;
+			firstPersonController.enabled = true;
 		}
 
-		onToggleShared.Invoke (true);
-
-		if (isLocalPlayer)
-			onToggleLocal.Invoke (true);
-		else
-			onToggleRemote.Invoke (true);
+		playerShooting.enabled = true;
+		playerHealth.enabled = true;
+	
+		//onToggleRemote.Invoke (true);
 	}
 
 	public void Despawn() {
 	}
 
 	public void Die() {
-		this.GetComponent<NavMeshAgent> ().enabled = false;
-
 		anim.SetTrigger( "Death");
-
-		// Kill bot
-		if (playerControllerId == -1 && this.gameObject != null) {
-		} else {
-			DisablePlayer ();
-			Invoke ("Respawn", respawnTime);
-		}
+		DisablePlayer ();
+		Invoke ("Respawn", respawnTime);
 	}
 
-	void Respawn()
-	{
-		if (isLocalPlayer) 
-		{
+	void Respawn() {
+		if (isLocalPlayer) {
 			anim.SetTrigger("Respawn");
 			Transform spawn = NetworkManager.singleton.GetStartPosition ();
 			transform.position = spawn.position;
@@ -111,30 +96,18 @@ public class Player : NetworkBehaviour
 	}
 
 	void Update() {
-
-
 		if (isLocalPlayer) {
 			if (Mathf.Abs(Input.GetAxis ("Vertical")) + Mathf.Abs(Input.GetAxis ("Horizontal")) > 0.001f) {
-//				anim.animator.SetBool ("Walking", true);
+				anim.animator.SetBool ("Walking", true);
 			} else {
-//				anim.animator.SetBool ("Walking", false);
+				anim.animator.SetBool ("Walking", false);
 			}
 		}
-
-	}
-
-	public bool isBot() {
-		return this.GetComponent<NavMeshAgent> ().enabled;
 	}
 
 	[ServerCallback]
 	private void InitializePlayer() {
-		if (playerControllerId == -1) {
-			obstacle.enabled = false;
-			agent.enabled = true;
-			agent.avoidancePriority = Random.Range(1, 100);
-			nav.enabled = true;
-		}
+
 	}
 }
 

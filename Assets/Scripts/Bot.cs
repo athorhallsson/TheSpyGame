@@ -10,8 +10,8 @@ public class Bot : NetworkBehaviour {
 	[SerializeField] GameObject[] models;
 	[SerializeField] GameObject model;
 
-	[SyncVar(hook="OnChangeModelNumber")]
-	public int modelNumber = -1;
+	[SyncVar] public int modelNumber = -1;
+	private bool modelReady = false;
 
 	private GameObject[] goals;
 	private NavMeshAgent agent;
@@ -55,6 +55,12 @@ public class Bot : NetworkBehaviour {
 		}
 	}
 
+	void Update() {
+		if (!modelReady && modelNumber >= 0) {
+			SetModel(modelNumber);
+			modelReady = true;
+		}
+	}
 	void LateUpdate() {
 		if (ident.hasAuthority) {
 			currentState = fsm.State.ToString();
@@ -65,10 +71,8 @@ public class Bot : NetworkBehaviour {
 	public void ResetModelNumber() {
 		modelNumber = Random.Range(0, models.Length);
 	}
-
-	public void OnChangeModelNumber(int newModelNumber) {
-		modelNumber = newModelNumber;
-		GameObject modelPrefab = models[modelNumber];
+	public void SetModel(int number) {
+		GameObject modelPrefab = models[number];
 		model = Instantiate(modelPrefab, this.transform.position, Quaternion.identity);
 		model.transform.parent = this.transform;
 
@@ -99,7 +103,7 @@ public class Bot : NetworkBehaviour {
 	// AI State Machine -------------------------------------------------------
 	// Building
 	void Building_Update() {
-		if (modelNumber != -1) {
+		if (modelReady) {
 			fsm.ChangeState(States.Deciding);
 		}
 	}

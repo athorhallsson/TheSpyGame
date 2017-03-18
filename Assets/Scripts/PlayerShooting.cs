@@ -7,36 +7,33 @@ public class PlayerShooting : NetworkBehaviour
 	[SerializeField] Transform firePosition;
 	[SerializeField] ShotEffectsManager shotEffects;
 
-	float ellapsedTime = 0f;
+	float elapsedTime;
 	bool canShoot;
 
-	void Start()
-	{
+	void Start() {
 //		shotEffects.Initialize ();
-
-		if (isLocalPlayer)
+		elapsedTime = 0f;
+		if (isLocalPlayer) {
 			canShoot = true;
+		}
 	}
 
-	void Update()
-	{
+	void Update() {
 		if (!canShoot)
 			return;
 
-		ellapsedTime += Time.deltaTime;
+		elapsedTime += Time.deltaTime;
 
-		if (Input.GetButtonDown ("Fire1")) 
-		{
-			if (ellapsedTime > shotCooldown) {
-				ellapsedTime = 0f;
+		if (Input.GetButtonDown ("Fire1")) {
+			if (elapsedTime > shotCooldown) {
+				elapsedTime = 0f;
 				CmdFireShot (firePosition.position, firePosition.forward);
 			}
 		}
 	}
 
 	[Command]
-	void CmdFireShot(Vector3 origin, Vector3 direction)
-	{
+	void CmdFireShot(Vector3 origin, Vector3 direction) {
 		RaycastHit hit;
 
 		Ray ray = new Ray (origin, direction);
@@ -44,11 +41,11 @@ public class PlayerShooting : NetworkBehaviour
 
 		bool result = Physics.Raycast (ray, out hit, 50f);
 
-		if (result) 
-		{
+		if (result) {
 			PlayerHealth enemy = hit.transform.GetComponentInParent<PlayerHealth> ();
-			if (enemy != null)
-				enemy.TakeDamage ();
+			if (enemy != null) {
+				enemy.TakeDamage();
+			}
 		}
 
 		// Make the bots panic
@@ -63,8 +60,7 @@ public class PlayerShooting : NetworkBehaviour
 	}
 
 	[ClientRpc]
-	void RpcProcessShotEffects(bool playImpact, Vector3 point)
-	{
+	void RpcProcessShotEffects(bool playImpact, Vector3 point) {
 		shotEffects.PlayShotEffects ();
 
 		//		if (playImpact)

@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 195380297134339554}
   - component: {fileID: 95833625219528618}
   - component: {fileID: 114968188992979590}
+  - component: {fileID: 136676470677656962}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Untagged
@@ -170,6 +171,19 @@ MonoBehaviour:
   param3: 
   param4: 
   param5: 
+--- !u!136 &136676470677656962
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054137126626504}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 1.6
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!195 &195380297134339554
 NavMeshAgent:
   m_ObjectHideFlags: 1

@@ -31,14 +31,17 @@ public class PlayerShooting : NetworkBehaviour
 		if (Input.GetButtonDown ("Fire1")) {
 			if (elapsedTime > shotCooldown) {
 				elapsedTime = 0f;
+				this.parentPlayerAnim.SetTrigger("Shooting");
 				CmdFireShot (firePosition.position, firePosition.forward);
 			}
 		}
 	}
 
-	[Command]
-	void CmdFireShot(Vector3 origin, Vector3 direction) {
-		this.parentPlayerAnim.SetTrigger("Shooting");
+	// Shooting
+	private void FireGun() {
+		Vector3 origin = firePosition.position;
+		Vector3 direction = firePosition.forward;
+
 		RaycastHit hit;
 		Ray ray = new Ray (origin, direction);
 		Debug.DrawRay    (ray.origin, ray.direction * 3f, Color.red, 1f);
@@ -52,16 +55,13 @@ public class PlayerShooting : NetworkBehaviour
 			}
 		}
 
-		// Make the bots panic
-		//		GameObject[] players = GameObject.FindGameObjectsWithTag ("Player");
-		//		foreach (GameObject player in players) {
-		//			if (player.GetComponent<Player>().isBot()) {
-		//				player.GetComponent<Navigation> ().Panic ();
-		//			}
-		//		}
-
 		RpcProcessShotEffects (result, hit.point);
+	}
+
+	[Command]
+	void CmdFireShot(Vector3 origin, Vector3 direction) {
 		RpcDrawGun();
+		Invoke("FireGun", 2.0f);
 	}
 
 	private void UpdateGunParent() {

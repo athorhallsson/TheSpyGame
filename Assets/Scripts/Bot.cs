@@ -20,9 +20,9 @@ public class Bot : MonoBehaviour {
 	private float rotationDirection;
 	private float rotationSpeed;
 
-	[SerializeField] System.String currentState;
-	[SerializeField] System.String debugInfo;
-	[SerializeField] GameObject debugObject;
+	public System.String currentState;
+	public System.String debugInfo;
+	public GameObject debugObject;
 
 
 	private enum States {
@@ -96,7 +96,6 @@ public class Bot : MonoBehaviour {
 
 	// Idle
 	IEnumerator Idle_Enter() {
-		print ("Entering Idle");
 		anim.animator.SetBool("Walking", false);
 		agent.Stop();
 

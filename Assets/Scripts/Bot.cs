@@ -6,13 +6,14 @@ using UnityEngine.Networking;
 using MonsterLove.StateMachine;
 
 
-public class Bot : MonoBehaviour {
+public class Bot : NetworkBehaviour {
 	[SerializeField] GameObject[] models;
 	[SerializeField] GameObject model;
 
 	private GameObject[] goals;
 	private NavMeshAgent agent;
 	private NetworkAnimator anim;
+	private NetworkIdentity ident;
 
 	// State Machine Data
 	private StateMachine<States> fsm;
@@ -23,7 +24,6 @@ public class Bot : MonoBehaviour {
 	public System.String currentState;
 	public System.String debugInfo;
 	public GameObject debugObject;
-
 
 	private enum States {
 		Deciding,
@@ -36,18 +36,23 @@ public class Bot : MonoBehaviour {
 	void Awake() {
 		agent = GetComponent<NavMeshAgent>();
 		anim = GetComponent<NetworkAnimator>();
-		fsm = StateMachine<States>.Initialize(this);
+		ident = GetComponent<NetworkIdentity>();
 
 		ChooseModel();
 		FindGoals();
 	}
 
 	void Start() {
-		fsm.ChangeState(States.Deciding);
+		if (ident.localPlayerAuthority) {
+			fsm = StateMachine<States>.Initialize(this);
+			fsm.ChangeState(States.Deciding);
+		}
 	}
 
 	void LateUpdate() {
-		currentState = fsm.State.ToString();
+		if (ident.localPlayerAuthority) {
+			currentState = fsm.State.ToString();
+		}
 	}
 
 	// Random Models ----------------------------------------------------------

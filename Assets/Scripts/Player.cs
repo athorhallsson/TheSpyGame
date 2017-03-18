@@ -51,10 +51,6 @@ public class Player : NetworkBehaviour
 	void Start() {
 		mainCamera = Camera.main.gameObject;
 
-		for (int i = 0; i < botCount; i++) {
-			CmdSpawnBot();
-		}
-
 		EnablePlayer ();
 	}
 
@@ -72,6 +68,10 @@ public class Player : NetworkBehaviour
 
 	void EnablePlayer() {
 		if (isLocalPlayer) {
+			for (int i = 0; i < botCount; i++) {
+				CmdSpawnBot();
+			}
+
 			mainCamera.SetActive (false);
 			fpsCamera.enabled = true;
 			fpsAudio.enabled = true;

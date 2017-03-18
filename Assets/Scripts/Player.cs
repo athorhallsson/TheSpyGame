@@ -9,7 +9,7 @@ public class Player : NetworkBehaviour
 	[SerializeField] float respawnTime;
 
 	[SerializeField] GameObject[] models;
-	[SerializeField] GameObject model;
+	public GameObject model;
 	[SyncVar] public int modelNumber = -1;
 	private bool modelReady = false;
 

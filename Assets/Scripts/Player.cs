@@ -60,10 +60,11 @@ public class Player : NetworkBehaviour
 
 		if (isLocalPlayer) {
 			this.firstPersonController.enabled = false;
-			mainCamera.SetActive (true);
 			fpsCamera.enabled = false;
+			mainCamera.SetActive (true);
+			fpsAudio.enabled = false;
 		}
-		//onToggleRemote.Invoke (false);
+		//onToggleRemote.Invoke(false);
 	}
 
 	void EnablePlayer() {

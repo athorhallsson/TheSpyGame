@@ -25,6 +25,7 @@ GameObject:
   - component: {fileID: 195380297134339554}
   - component: {fileID: 95833625219528618}
   - component: {fileID: 114968188992979590}
+  - component: {fileID: 148333465306261976}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Untagged
@@ -169,6 +170,18 @@ MonoBehaviour:
   param3: 
   param4: 
   param5: 
+--- !u!148 &148333465306261976
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054137126626504}
+  m_Enabled: 1
+  m_StateSynchronization: 1
+  m_Observed: {fileID: 4562928484942570}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
 --- !u!195 &195380297134339554
 NavMeshAgent:
   m_ObjectHideFlags: 1

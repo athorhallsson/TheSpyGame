@@ -126,7 +126,6 @@ public class Bot : NetworkBehaviour {
 	// Idle
 	IEnumerator Idle_Enter() {
 		anim.animator.SetBool("Walking", false);
-		agent.Stop();
 
 		yield return new WaitForSeconds(Random.Range(1.0f, 3.0f));
 
@@ -145,9 +144,12 @@ public class Bot : NetworkBehaviour {
 
 		if (agent.remainingDistance < 1f) {
 			anim.animator.SetBool("Walking", false);
-			agent.Stop();
 			fsm.ChangeState(States.Deciding);
 		}
+	}
+
+	void Walking_Finally() {
+		agent.Stop ();
 	}
 
 	// Looking
@@ -169,5 +171,7 @@ public class Bot : NetworkBehaviour {
 
 	public void Die() {
 		anim.animator.SetTrigger( "Death");
+		fsm.ChangeState (States.Dead, StateTransition.Overwrite);
+		this.GetComponent<CapsuleCollider> ().enabled = false;
 	}
 }

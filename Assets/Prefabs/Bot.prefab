@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 95833625219528618}
   - component: {fileID: 114968188992979590}
   - component: {fileID: 136676470677656962}
+  - component: {fileID: 114936657634684396}
   m_Layer: 0
   m_Name: Bot
   m_TagString: Untagged
@@ -152,6 +153,18 @@ MonoBehaviour:
   m_SnapThreshold: 5
   m_InterpolateRotation: 15
   m_InterpolateMovement: 1
+--- !u!114 &114936657634684396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054137126626504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ede497ba1e54e463189904c63b277995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1
 --- !u!114 &114968188992979590
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -180,7 +193,7 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.3
+  m_Radius: 0.4
   m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: 1, z: 0}

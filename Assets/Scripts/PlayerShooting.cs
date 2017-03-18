@@ -22,6 +22,7 @@ public class PlayerShooting : NetworkBehaviour
 	}
 
 	void Update() {
+		Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 3f, Color.red, 1f);
 		if (!canShoot) {
 			return;
 		}
@@ -39,12 +40,16 @@ public class PlayerShooting : NetworkBehaviour
 
 	// Shooting
 	private void FireGun() {
-		Vector3 origin = firePosition.position;
-		Vector3 direction = firePosition.forward;
+//		Vector3 origin = firePosition.position;
+//		Vector3 direction = firePosition.forward;
+
+		Vector3 origin = Camera.main.transform.position;
+		Vector3 direction = Camera.main.transform.forward;
 
 		RaycastHit hit;
 		Ray ray = new Ray (origin, direction);
 		Debug.DrawRay    (ray.origin, ray.direction * 3f, Color.red, 1f);
+
 
 		bool result = Physics.Raycast (ray, out hit, 50f);
 
@@ -56,6 +61,11 @@ public class PlayerShooting : NetworkBehaviour
 		}
 
 		RpcProcessShotEffects (result, hit.point);
+	}
+
+	void OnDrawGizmosSelected() {
+		//Gizmos.DrawRay(firePosition.position, firePosition.forward);
+		Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 3f, Color.red, 1f);
 	}
 
 	[Command]

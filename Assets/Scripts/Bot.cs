@@ -14,16 +14,22 @@ public class Bot : MonoBehaviour {
 	private NavMeshAgent agent;
 	private NetworkAnimator anim;
 
+	// State Machine Data
 	private StateMachine<States> fsm;
+	private float rotationRemaining;
+	private float rotationDirection;
+	private float rotationSpeed;
 
 	[SerializeField] System.String currentState;
 	[SerializeField] System.String debugInfo;
 	[SerializeField] GameObject debugObject;
 
+
 	private enum States {
 		Deciding,
 		Idle,
-		Walking
+		Walking,
+		Looking
 	}
 
 	// Main ----------k---------------------------------------------------------
@@ -66,18 +72,29 @@ public class Bot : MonoBehaviour {
 		}
 	}
 
+	void ChooseRotation() {
+		rotationRemaining = Random.Range(30.0f, 210.0f);
+		rotationDirection = Random.Range(0.0f, 1.0f) < 0.5f ? 1f : -1f;
+		rotationSpeed = Random.Range(100.0f, 200.0f);
+	}
+
 	// AI State Machine -------------------------------------------------------
+	// Deciding
 	void Deciding_Enter() {
-		switch (Random.Range(0, 2)) {
+		switch (Random.Range(0, 3)) {
 			case 0:
 				fsm.ChangeState(States.Idle);
 				break;
 			case 1:
 				fsm.ChangeState(States.Walking);
 				break;
+			case 2:
+				fsm.ChangeState(States.Looking);
+				break;
 		}
 	}
 
+	// Idle
 	IEnumerator Idle_Enter() {
 		print ("Entering Idle");
 		anim.animator.SetBool("Walking", false);
@@ -88,9 +105,8 @@ public class Bot : MonoBehaviour {
 		fsm.ChangeState(States.Deciding);
 	}
 
+	// Walking
 	void Walking_Enter() {
-		print ("Entering Walking");
-
 		ChooseDestination();
 		anim.animator.SetBool("Walking", true);
 		agent.Resume();
@@ -102,6 +118,23 @@ public class Bot : MonoBehaviour {
 		if (agent.remainingDistance < 1f) {
 			anim.animator.SetBool("Walking", false);
 			agent.Stop();
+			fsm.ChangeState(States.Deciding);
+		}
+	}
+
+	// Looking
+	void Looking_Enter() {
+		ChooseRotation();
+	}
+
+	void Looking_Update() {
+		debugInfo = rotationRemaining.ToString();
+
+		if (rotationRemaining >= 0f) {
+			float amount = rotationSpeed * Time.deltaTime;
+			this.transform.Rotate(Vector3.up * rotationDirection * amount);
+			rotationRemaining -= amount;
+		} else {
 			fsm.ChangeState(States.Deciding);
 		}
 	}

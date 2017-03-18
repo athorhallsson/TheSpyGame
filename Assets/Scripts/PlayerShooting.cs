@@ -19,9 +19,10 @@ public class PlayerShooting : NetworkBehaviour
 	}
 
 	void Update() {
-		if (!canShoot)
+		if (!canShoot) {
 			return;
-
+		}
+			
 		elapsedTime += Time.deltaTime;
 
 		if (Input.GetButtonDown ("Fire1")) {
@@ -62,7 +63,6 @@ public class PlayerShooting : NetworkBehaviour
 	[ClientRpc]
 	void RpcProcessShotEffects(bool playImpact, Vector3 point) {
 		shotEffects.PlayShotEffects ();
-
 		//		if (playImpact)
 		//			shotEffects.PlayImpactEffect (point);
 	}

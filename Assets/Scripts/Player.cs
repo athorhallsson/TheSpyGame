@@ -21,6 +21,10 @@ public class Player : NetworkBehaviour
 
 	GameObject mainCamera;
 
+	// Bots
+	[SerializeField] GameObject botPrefab;
+	[SerializeField] int botCount;
+
 	void Awake() {
 		anim = this.GetComponent<NetworkAnimator>();
 		ChooseModel();
@@ -46,6 +50,11 @@ public class Player : NetworkBehaviour
 
 	void Start() {
 		mainCamera = Camera.main.gameObject;
+
+		for (int i = 0; i < botCount; i++) {
+			CmdSpawnBot();
+		}
+
 		EnablePlayer ();
 	}
 
@@ -108,6 +117,13 @@ public class Player : NetworkBehaviour
 	[ServerCallback]
 	private void InitializePlayer() {
 
+	}
+
+	[Command]
+	private void CmdSpawnBot() {
+		Transform spawnPoint = NetworkManager.singleton.GetStartPosition();
+		GameObject bot = Instantiate(botPrefab, spawnPoint.position, Quaternion.identity);
+		NetworkServer.SpawnWithClientAuthority(bot, connectionToClient);
 	}
 }
 

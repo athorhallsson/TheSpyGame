@@ -33,7 +33,8 @@ public class Bot : NetworkBehaviour {
 		Deciding,
 		Idle,
 		Walking,
-		Looking
+		Looking,
+		Dead
 	}
 
 	// Main --------------------------------------------------------------------
@@ -165,5 +166,9 @@ public class Bot : NetworkBehaviour {
 		} else {
 			fsm.ChangeState(States.Deciding);
 		}
+	}
+
+	public void Die() {
+		anim.animator.SetTrigger( "Death");
 	}
 }

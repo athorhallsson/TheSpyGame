@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Networking;
 using MonsterLove.StateMachine;
+using System.Linq;
 
 
 public class Bot : NetworkBehaviour {
@@ -12,6 +13,7 @@ public class Bot : NetworkBehaviour {
 	[SyncVar] public int modelNumber = -1;
 	private bool modelReady = false;
 
+	private AudioSource audioSource;
 	private GameObject[] goals;
 	private NavMeshAgent agent;
 	private NetworkAnimator anim;
@@ -33,13 +35,15 @@ public class Bot : NetworkBehaviour {
 		Idle,
 		Walking,
 		Looking,
-		Dead
+		Dead,
+		Panic
 	}
 
 	// Main --------------------------------------------------------------------
 	void Awake() {
 		agent = GetComponent<NavMeshAgent>();
 		ident = GetComponent<NetworkIdentity>();
+		audioSource = GetComponent<AudioSource>();
 
 		anim = GetComponent<NetworkAnimator>();
 		anim.enabled = false;
@@ -169,10 +173,48 @@ public class Bot : NetworkBehaviour {
 		}
 	}
 
+	void Panic_Enter() {
+		agent.speed = 6.0f;
+		this.audioSource.pitch = Random.Range (0.8f, 1.2f);
+		// TODO running
+		anim.animator.SetBool("Walking", true);
+		Invoke("Scream", Random.Range(0.0f, 4.0f));
+		agent.Resume();
+	}
+
+	void Panic_Update() {
+		debugInfo = agent.remainingDistance.ToString();
+		if (agent.remainingDistance < 1f) {
+			// TODO running
+			anim.animator.SetBool("Walking", false);
+			fsm.ChangeState(States.Deciding);
+		}
+	}
+
+	void Panic_Finally() {
+		agent.Stop ();
+		agent.speed = 1.2f;
+	}
+
 	public void Die() {
 		agent.Stop ();
 		anim.animator.SetTrigger( "Death");
 		fsm.ChangeState (States.Dead, StateTransition.Overwrite);
 		this.GetComponent<CapsuleCollider> ().enabled = false;
+	}
+
+	public void Panic(Vector3 point) {
+		List<Transform> positions = new List<Transform> ();
+		foreach (GameObject goal in goals) {
+			positions.Add(goal.GetComponent<Transform> ());
+		}
+		positions.OrderBy (s => Vector3.Distance (s.position, point));
+		agent.destination = positions.ElementAt(5).position;
+		
+		fsm.ChangeState (States.Panic, StateTransition.Overwrite);
+	}
+
+	private void Scream() {
+		this.audioSource.Play();
 	}
 }

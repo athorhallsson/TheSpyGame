@@ -59,6 +59,12 @@ public class PlayerShooting : NetworkBehaviour
 				RpcProcessShotEffects (hit.point, false);
 			}
 		}
+
+		// Make bots panic
+		GameObject[] objects = GameObject.FindGameObjectsWithTag("Bot");
+		foreach (GameObject obj in objects) {
+			obj.GetComponent<Bot> ().Panic (hit.point);
+		}
 	}
 
 	void OnDrawGizmosSelected() {

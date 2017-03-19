@@ -170,6 +170,7 @@ public class Bot : NetworkBehaviour {
 	}
 
 	public void Die() {
+		agent.Stop ();
 		anim.animator.SetTrigger( "Death");
 		fsm.ChangeState (States.Dead, StateTransition.Overwrite);
 		this.GetComponent<CapsuleCollider> ().enabled = false;

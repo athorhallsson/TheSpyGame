@@ -40,8 +40,9 @@ public class PlayerShooting : NetworkBehaviour
 
 	// Shooting
 	private void FireGun() {
-		Vector3 origin = Camera.main.transform.position;
-		Vector3 direction = Camera.main.transform.forward;
+		Transform camTransform = Camera.main.transform;
+		Vector3 origin = camTransform.position + camTransform.forward;
+		Vector3 direction = camTransform.forward;
 
 		RaycastHit hit;
 		Ray ray = new Ray (origin, direction);

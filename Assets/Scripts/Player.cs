@@ -47,6 +47,12 @@ public class Player : NetworkBehaviour
 		this.anim.animator = model.GetComponent<Animator>();
 	}
 
+	void OnGUI(){
+		if (isLocalPlayer) {
+			GUI.Box(new Rect(Screen.width/2,Screen.height/2, 10, 10), "");
+		}
+	}
+
 	void Start() {
 		mainCamera = Camera.main.gameObject;
 

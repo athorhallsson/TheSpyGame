@@ -4,7 +4,6 @@ using UnityEngine.Networking;
 public class PlayerShooting : NetworkBehaviour 
 {
 	[SerializeField] float shotCooldown;
-	[SerializeField] Transform firePosition;
 	[SerializeField] ShotEffectsManager shotEffects;
 	[SerializeField] GameObject gun;
 
@@ -14,6 +13,7 @@ public class PlayerShooting : NetworkBehaviour
 
 	void Start() {
 		parentPlayerAnim = GetComponentInParent<NetworkAnimator>();
+		shotEffects.Initialize ();
 
 		elapsedTime = 0f;
 		if (isLocalPlayer) {
@@ -33,16 +33,13 @@ public class PlayerShooting : NetworkBehaviour
 			if (elapsedTime > shotCooldown) {
 				elapsedTime = 0f;
 				this.parentPlayerAnim.SetTrigger("Shooting");
-				CmdFireShot (firePosition.position, firePosition.forward);
+				CmdFireShot ();
 			}
 		}
 	}
 
 	// Shooting
 	private void FireGun() {
-//		Vector3 origin = firePosition.position;
-//		Vector3 direction = firePosition.forward;
-
 		Vector3 origin = Camera.main.transform.position;
 		Vector3 direction = Camera.main.transform.forward;
 
@@ -56,20 +53,20 @@ public class PlayerShooting : NetworkBehaviour
 		if (result) {
 			PlayerHealth enemy = hit.transform.GetComponentInParent<PlayerHealth> ();
 			if (enemy != null) {
-				enemy.TakeDamage();
+				enemy.TakeDamage ();
+				RpcProcessShotEffects (hit.point, true);
+			} else {
+				RpcProcessShotEffects (hit.point, false);
 			}
 		}
-
-		RpcProcessShotEffects (result, hit.point);
 	}
 
 	void OnDrawGizmosSelected() {
-		//Gizmos.DrawRay(firePosition.position, firePosition.forward);
 		Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 3f, Color.red, 1f);
 	}
 
 	[Command]
-	void CmdFireShot(Vector3 origin, Vector3 direction) {
+	void CmdFireShot() {
 		RpcDrawGun();
 		Invoke("FireGun", 2.0f);
 	}
@@ -87,9 +84,12 @@ public class PlayerShooting : NetworkBehaviour
 	}
 
 	[ClientRpc]
-	void RpcProcessShotEffects(bool playImpact, Vector3 point) {
+	void RpcProcessShotEffects(Vector3 point, bool hit) {
 		shotEffects.PlayShotEffects ();
-		//		if (playImpact)
-		//			shotEffects.PlayImpactEffect (point);
+		if (hit) {
+			shotEffects.PlayImpactEffect (point);
+		} else {
+			shotEffects.PlayHitEffect (point);
+		}
 	}
 }

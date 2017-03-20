@@ -75,6 +75,7 @@ public class PlayerShooting : NetworkBehaviour
 	void CmdFireShot() {
 		RpcDrawGun();
 		Invoke("FireGun", 2.0f);
+		Invoke("RpcHolsterGun", 4.0f);
 	}
 
 	private void UpdateGunParent() {
@@ -94,6 +95,11 @@ public class PlayerShooting : NetworkBehaviour
 	void RpcDrawGun() {
 		UpdateGunParent();
 		gun.SetActive(true);
+	}
+
+	[ClientRpc]
+	void RpcHolsterGun() {
+		gun.SetActive(false);
 	}
 
 	[ClientRpc]

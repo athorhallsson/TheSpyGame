@@ -197,6 +197,7 @@ GameObject:
   - component: {fileID: 114658673002241334}
   - component: {fileID: 95045562985577922}
   - component: {fileID: 114506053191735868}
+  - component: {fileID: 136977435979552872}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -381,7 +382,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967039
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -598,7 +599,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -894,7 +895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_IsWalking: 0
   m_WalkSpeed: 2
-  m_RunSpeed: 3
+  m_RunSpeed: 4
   m_RunstepLenghten: 0.2
   m_JumpSpeed: 5
   m_StickToGroundForce: 10
@@ -989,7 +990,7 @@ MonoBehaviour:
   m_SyncSpin: 0
   m_MovementTheshold: 0.1
   m_SnapThreshold: 1
-  m_InterpolateRotation: 15
+  m_InterpolateRotation: 10
   m_InterpolateMovement: 1
 --- !u!114 &114873297257185780
 MonoBehaviour:
@@ -1012,6 +1013,19 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1482165934719484}
   m_Enabled: 1
+--- !u!136 &136977435979552872
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1685423373056240}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &143392625265841470
 CharacterController:
   m_ObjectHideFlags: 1

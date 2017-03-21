@@ -3,6 +3,7 @@ using UnityEngine.Networking;
 using UnityEngine.Events;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.FirstPerson;
+using UnityEngine.SceneManagement;
 
 public class Player : NetworkBehaviour 
 {
@@ -100,7 +101,10 @@ public class Player : NetworkBehaviour
 	public void Die() {
 		anim.SetTrigger( "Death");
 		DisablePlayer ();
-		Invoke ("Respawn", respawnTime);
+        if (isLocalPlayer) {
+            SceneManager.LoadScene("Lobby");
+        }
+      
 	}
 
 	void Respawn() {

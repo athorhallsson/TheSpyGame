@@ -67,6 +67,7 @@ public class Player : NetworkBehaviour
 			this.firstPersonController.enabled = false;
 			fpsCamera.enabled = false;
 			mainCamera.SetActive (true);
+			mainCamera.GetComponent<AudioListener> ().enabled = true;
 			fpsAudio.enabled = false;
 		}
 	}
@@ -80,6 +81,7 @@ public class Player : NetworkBehaviour
 			mainCamera.SetActive (false);
 			fpsCamera.enabled = true;
 			fpsAudio.enabled = true;
+			mainCamera.GetComponent<AudioListener> ().enabled = false;
 			firstPersonController.enabled = true;
 			CmdResetModel();
 		}

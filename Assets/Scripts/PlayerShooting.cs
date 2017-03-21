@@ -112,6 +112,7 @@ public class PlayerShooting : NetworkBehaviour
 
 	[ClientRpc]
 	void RpcHolsterGun() {
+		this.parentPlayerAnim.animator.SetBool("Shooting", false);
 		gun.SetActive(false);
 	}
 

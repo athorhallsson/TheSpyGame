@@ -69,7 +69,6 @@ public class Player : NetworkBehaviour
 			mainCamera.SetActive (true);
 			fpsAudio.enabled = false;
 		}
-		//onToggleRemote.Invoke(false);
 	}
 
 	void EnablePlayer() {
@@ -87,8 +86,6 @@ public class Player : NetworkBehaviour
 
 		playerShooting.enabled = true;
 		playerHealth.enabled = true;
-	
-		//onToggleRemote.Invoke (true);
 	}
 
 	public void Despawn() {

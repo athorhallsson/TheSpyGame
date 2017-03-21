@@ -174,10 +174,10 @@ public class Bot : NetworkBehaviour {
 	}
 
 	void Panic_Enter() {
+		print ("bla");
 		agent.speed = 6.0f;
 		this.audioSource.pitch = Random.Range (0.8f, 1.2f);
-		// TODO running
-		anim.animator.SetBool("Walking", true);
+		anim.animator.SetBool("Running", true);
 		Invoke("Scream", Random.Range(0.0f, 4.0f));
 		agent.Resume();
 	}
@@ -185,8 +185,7 @@ public class Bot : NetworkBehaviour {
 	void Panic_Update() {
 		debugInfo = agent.remainingDistance.ToString();
 		if (agent.remainingDistance < 1f) {
-			// TODO running
-			anim.animator.SetBool("Walking", false);
+			anim.animator.SetBool("Running", false);
 			fsm.ChangeState(States.Deciding);
 		}
 	}
@@ -201,15 +200,18 @@ public class Bot : NetworkBehaviour {
 		anim.animator.SetTrigger( "Death");
 		fsm.ChangeState (States.Dead, StateTransition.Overwrite);
 		this.GetComponent<CapsuleCollider> ().enabled = false;
+		this.enabled = false;
 	}
 
 	public void Panic(Vector3 point) {
-		List<Transform> positions = new List<Transform> ();
-		foreach (GameObject goal in goals) {
-			positions.Add(goal.GetComponent<Transform> ());
-		}
-		positions.OrderBy (s => Vector3.Distance (s.position, point));
-		agent.destination = positions.ElementAt(5).position;
+//		List<Transform> positions = new List<Transform> ();
+//		foreach (GameObject goal in goals) {
+//			positions.Add(goal.GetComponent<Transform> ());
+//		}
+//		positions.OrderBy (s => Vector3.Distance (s.position, point));
+//		agent.destination = positions.ElementAt(5).position;
+
+		agent.destination = goals[10].transform.position;
 		
 		fsm.ChangeState (States.Panic, StateTransition.Overwrite);
 	}

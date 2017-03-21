@@ -33,8 +33,8 @@ public class PlayerShooting : NetworkBehaviour
 		if (Input.GetButtonDown ("Fire1")) {
 			if (elapsedTime > shotCooldown) {
 				elapsedTime = 0f;
-				this.parentPlayerAnim.SetTrigger("Shooting");
-
+				this.parentPlayerAnim.animator.SetBool("Shooting", true);
+				//this.parentPlayerAnim.SetTrigger("Shooting");
 				CmdFireShot ();
 			}
 		}
@@ -70,10 +70,14 @@ public class PlayerShooting : NetworkBehaviour
 		// Make bots panic
 		GameObject[] objects = GameObject.FindGameObjectsWithTag("Bot");
 		foreach (GameObject obj in objects) {
-			obj.GetComponent<Bot> ().Panic (hit.point);
+			Bot bot = obj.GetComponent<Bot>();
+			if (bot != null && bot.enabled) {
+				bot.Panic (hit.point);
+			}
 		}
 
-		yield return new WaitForSeconds(2.0f);
+		yield return new WaitForSeconds(1.5f);
+		this.parentPlayerAnim.animator.SetBool("Shooting", false);
 		RpcHolsterGun();
 	}
 

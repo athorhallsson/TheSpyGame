@@ -117,11 +117,13 @@ public class Player : NetworkBehaviour
 			modelReady = true;
 		}
 
-		if (isLocalPlayer) {
-			if (Mathf.Abs(Input.GetAxis ("Vertical")) + Mathf.Abs(Input.GetAxis ("Horizontal")) > 0.001f) {
-				anim.animator.SetBool ("Walking", true);
-			} else {
-				anim.animator.SetBool ("Walking", false);
+		if (modelReady) {
+			if (isLocalPlayer) {
+				if (Mathf.Abs(Input.GetAxis ("Vertical")) + Mathf.Abs(Input.GetAxis ("Horizontal")) > 0.001f) {
+					anim.animator.SetBool ("Walking", true);
+				} else {
+					anim.animator.SetBool ("Walking", false);
+				}
 			}
 		}
 	}

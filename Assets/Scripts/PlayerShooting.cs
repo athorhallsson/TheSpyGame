@@ -1,7 +1,9 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.Networking;
 
-public class PlayerShooting : NetworkBehaviour 
+public class PlayerShooting : NetworkBehaviour
 {
 	[SerializeField] float shotCooldown;
 	[SerializeField] ShotEffectsManager shotEffects;
@@ -22,7 +24,6 @@ public class PlayerShooting : NetworkBehaviour
 	}
 
 	void Update() {
-		Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 3f, Color.red, 1f);
 		if (!canShoot) {
 			return;
 		}
@@ -33,25 +34,31 @@ public class PlayerShooting : NetworkBehaviour
 			if (elapsedTime > shotCooldown) {
 				elapsedTime = 0f;
 				this.parentPlayerAnim.SetTrigger("Shooting");
+
 				CmdFireShot ();
 			}
 		}
 	}
-		
-	private void FireGun() {
-		Transform camTransform = Camera.main.transform;
-		Vector3 origin = camTransform.position + camTransform.forward;
+
+	private IEnumerator FireGun() {
+		RpcDrawGun();
+		yield return new WaitForSeconds(2.0f);
+
+		Transform camTransform = this.transform.FindChild("FirstPersonCharacter");
+		Vector3 origin = camTransform.position + (0.25f * camTransform.forward);
 		Vector3 direction = camTransform.forward;
 
 		RaycastHit hit;
 		Ray ray = new Ray (origin, direction);
-		Debug.DrawRay    (ray.origin, ray.direction * 3f, Color.red, 1f);
-
+		Debug.DrawRay (ray.origin, ray.direction * 3f, Color.red, 1f);
 
 		bool result = Physics.Raycast (ray, out hit, 50f);
 
 		if (result) {
 			PlayerHealth enemy = hit.transform.GetComponentInParent<PlayerHealth> ();
+			print ("Hit:");
+			print(enemy);
+
 			if (enemy != null) {
 				enemy.TakeDamage ();
 				RpcProcessShotEffects (hit.point, true);
@@ -65,17 +72,19 @@ public class PlayerShooting : NetworkBehaviour
 		foreach (GameObject obj in objects) {
 			obj.GetComponent<Bot> ().Panic (hit.point);
 		}
+
+		yield return new WaitForSeconds(2.0f);
+		RpcHolsterGun();
 	}
 
 	void OnDrawGizmosSelected() {
-		Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * 3f, Color.red, 1f);
+		Transform camTransform = this.transform.FindChild("FirstPersonCharacter");
+		Debug.DrawRay(camTransform.position, camTransform.forward * 3f, Color.red, 1f);
 	}
 
 	[Command]
 	void CmdFireShot() {
-		RpcDrawGun();
-		Invoke("FireGun", 2.0f);
-		Invoke("RpcHolsterGun", 4.0f);
+		StartCoroutine(FireGun());
 	}
 
 	private void UpdateGunParent() {
@@ -88,7 +97,7 @@ public class PlayerShooting : NetworkBehaviour
 		gun.transform.localPosition = new Vector3(-0.025f, 0.03f, -0.045f);
 		gun.transform.localRotation = Quaternion.identity;
 		gun.transform.localEulerAngles = new Vector3(-20, 50, 20);
-	
+
 	}
 
 	[ClientRpc]
@@ -105,6 +114,7 @@ public class PlayerShooting : NetworkBehaviour
 	[ClientRpc]
 	void RpcProcessShotEffects(Vector3 point, bool hit) {
 		shotEffects.PlayShotEffects ();
+
 		if (hit) {
 			shotEffects.PlayImpactEffect (point);
 		} else {

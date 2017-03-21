@@ -4,6 +4,7 @@ using UnityEngine.Events;
 using UnityEngine.AI;
 using UnityStandardAssets.Characters.FirstPerson;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : NetworkBehaviour 
 {
@@ -22,6 +23,9 @@ public class Player : NetworkBehaviour
 	private AudioListener fpsAudio;
 	private FirstPersonController firstPersonController;
 	GameObject mainCamera;
+
+	private bool gameOver = false;
+	private string message = "";
 
 	// Bots
 	[SerializeField] GameObject botPrefab;
@@ -55,6 +59,12 @@ public class Player : NetworkBehaviour
 	void OnGUI(){
 		if (isLocalPlayer) {
 			GUI.Box(new Rect(Screen.width/2,Screen.height/2, 10, 10), "");
+		}
+		if (gameOver) {
+			var w = 500;
+			var h = 500;
+			Rect rect = new Rect((Screen.width-w)/2, (Screen.height-h)/2, w, h);
+			GUI.Label(rect, message);
 		}
 	}
 
@@ -99,14 +109,21 @@ public class Player : NetworkBehaviour
 	}
 
 	public void Die() {
-		anim.SetTrigger( "Death");
-		DisablePlayer ();
+		anim.SetTrigger("Death");
+		DisablePlayer();
+		gameOver = true;
         if (isLocalPlayer) {
-            SceneManager.LoadScene("Lobby");
-        }
-      
+			message = "You lose!";
+		} else {
+			message = "You win!";
+		}
+		Invoke ("Exit", 5.0f);
 	}
 
+	public void Exit() {
+		Application.Quit();
+	}
+		
 	void Respawn() {
 		if (isLocalPlayer) {
 			anim.SetTrigger("Respawn");

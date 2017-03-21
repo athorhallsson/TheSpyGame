@@ -837,7 +837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f1a58084bf14495bdf91036b5d1c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnTime: 10
+  respawnTime: 30
   models:
   - {fileID: 1000013953556208, guid: 473b8bdfaa75e8d4f9ebcdf8944faf29, type: 2}
   - {fileID: 1000010520495688, guid: 04cb71165889221459d12a1ab5a83153, type: 2}

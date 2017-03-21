@@ -45,6 +45,10 @@ public class Player : NetworkBehaviour
 		model = Instantiate(modelPrefab, new Vector3(this.transform.position.x, this.transform.position.y - 0.9f, this.transform.position.z ), Quaternion.identity);
 		model.transform.parent = this.transform;
 		this.anim.animator = model.GetComponent<Animator>();
+		//if (isLocalPlayer) {
+			//foreach(Transform child in model.transform)
+				//child.gameObject.layer = LayerMask.NameToLayer ("Invisible");
+		//}
 	}
 
 	void OnGUI(){
@@ -119,8 +123,14 @@ public class Player : NetworkBehaviour
 		if (modelReady) {
 			if (isLocalPlayer) {
 				if (Mathf.Abs(Input.GetAxis ("Vertical")) + Mathf.Abs(Input.GetAxis ("Horizontal")) > 0.001f) {
-					anim.animator.SetBool ("Walking", true);
+					if (Input.GetKey(KeyCode.LeftShift)) {
+						anim.animator.SetBool ("Running", true);
+					} else {
+						anim.animator.SetBool ("Running", false);
+						anim.animator.SetBool ("Walking", true);
+					}
 				} else {
+					anim.animator.SetBool ("Running", false);
 					anim.animator.SetBool ("Walking", false);
 				}
 			}

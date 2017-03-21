@@ -94,6 +94,8 @@ public class PlayerShooting : NetworkBehaviour
 	private void UpdateGunParent() {
 		Transform hand = this.GetComponent<Player>().model.transform.Find("master/Reference/Hips/Spine/Spine1/Spine2/RightShoulder/RightArm/RightForeArm/RightHand");
 		gun.transform.parent = hand;
+
+
 		// Lower hand
 //		gun.transform.localPosition = new Vector3(0f, -0.01f, -0.05f);
 //		gun.transform.localRotation = Quaternion.identity;

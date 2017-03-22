@@ -80,6 +80,10 @@ public class Bot : NetworkBehaviour {
 		model = Instantiate(modelPrefab, this.transform.position, Quaternion.identity);
 		model.transform.parent = this.transform;
 
+		NetworkTransformChild ntc = this.GetComponent<NetworkTransformChild>();
+		ntc.target = model.transform;
+		ntc.enabled = true;
+
 		anim.animator = model.GetComponent<Animator>();
 		anim.enabled = true;
 	}

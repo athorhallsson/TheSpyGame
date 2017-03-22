@@ -95,14 +95,15 @@ public class PlayerShooting : NetworkBehaviour
 		Transform hand = this.GetComponent<Player>().model.transform.Find("master/Reference/Hips/Spine/Spine1/Spine2/RightShoulder/RightArm/RightForeArm/RightHand");
 		gun.transform.parent = hand;
 
-
-		// Lower hand
 //		gun.transform.localPosition = new Vector3(0f, -0.01f, -0.05f);
 //		gun.transform.localRotation = Quaternion.identity;
 //		gun.transform.localEulerAngles = new Vector3(10, 60, 5);
 		gun.transform.localPosition = new Vector3(-0.025f, 0.03f, -0.045f);
 		gun.transform.localRotation = Quaternion.identity;
 		gun.transform.localEulerAngles = new Vector3(-20, 50, 20);
+
+		gun.GetComponentInChildren<ParticleSystem> ().transform.localPosition = new Vector3 (-0.197f, -0.075f, -0.221f);
+		gun.GetComponentInChildren<ParticleSystem> ().transform.localEulerAngles = new Vector3 (180, 50, 0);
 
 	}
 

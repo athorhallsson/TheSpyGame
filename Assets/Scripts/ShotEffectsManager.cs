@@ -24,12 +24,14 @@ public class ShotEffectsManager : MonoBehaviour
 	}
 		
 	public void PlayImpactEffect(Vector3 impactPosition) {
+		impactEffect = Instantiate(impactPrefab).GetComponent<ParticleSystem>();
 		impactEffect.transform.position = impactPosition;   
 		impactEffect.Stop();
 		impactEffect.Play();
 	}
 
 	public void PlayHitEffect(Vector3 hitPosition) {
+		hitEffect = Instantiate(hitPrefab).GetComponent<ParticleSystem>();
 		hitEffect.transform.position = hitPosition;   
 		hitEffect.Stop();
 		hitEffect.Play();

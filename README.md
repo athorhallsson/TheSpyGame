@@ -1,8 +1,11 @@
 # TODO
 * End Screen
-* Fix Aiming
 * More Behaviour for AI (employee, run away, bump into, talking)
 * Fire alarm + Announcements?
+* Music in speakers
+
+# Done
+* Fix Aiming
 * Fix Player Collider
-* Music in speakers, vocal background, screams when shot
+* Music and sounds
 * Kill bots

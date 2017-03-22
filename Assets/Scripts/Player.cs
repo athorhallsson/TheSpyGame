@@ -54,6 +54,8 @@ public class Player : NetworkBehaviour
 			//foreach(Transform child in model.transform)
 				//child.gameObject.layer = LayerMask.NameToLayer ("Invisible");
 		//}
+		NetworkTransformChild ntc = gameObject.AddComponent<NetworkTransformChild>();
+		ntc.target = model.transform;
 	}
 
 	void OnGUI(){

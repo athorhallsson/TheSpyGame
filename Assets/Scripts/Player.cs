@@ -27,6 +27,8 @@ public class Player : NetworkBehaviour
 	private bool gameOver = false;
 	private string message = "";
 
+	private Vector3 cameraPosition;
+
 	// Bots
 	[SerializeField] GameObject botPrefab;
 	[SerializeField] int botCount;
@@ -54,8 +56,8 @@ public class Player : NetworkBehaviour
 			//foreach(Transform child in model.transform)
 				//child.gameObject.layer = LayerMask.NameToLayer ("Invisible");
 		//}
-		NetworkTransformChild ntc = gameObject.AddComponent<NetworkTransformChild>();
-		ntc.target = model.transform;
+	//	NetworkTransformChild ntc = gameObject.AddComponent<NetworkTransformChild>();
+	//	ntc.target = model.transform;
 	}
 
 	void OnGUI(){
@@ -152,12 +154,15 @@ public class Player : NetworkBehaviour
 			if (isLocalPlayer) {
 				if (Mathf.Abs(Input.GetAxis ("Vertical")) + Mathf.Abs(Input.GetAxis ("Horizontal")) > 0.001f) {
 					if (Input.GetKey(KeyCode.LeftShift)) {
+						MoveCameraForward ();
 						anim.animator.SetBool ("Running", true);
 					} else {
+						MoveCameraBack();
 						anim.animator.SetBool ("Running", false);
 						anim.animator.SetBool ("Walking", true);
 					}
 				} else {
+					MoveCameraBack();
 					anim.animator.SetBool ("Running", false);
 					anim.animator.SetBool ("Walking", false);
 				}
@@ -165,7 +170,12 @@ public class Player : NetworkBehaviour
 			if (Input.GetKeyDown(KeyCode.J)) {
 				Exit();
 			}
+			if (fpsCamera.enabled) {
+				float step = 1.0f * Time.deltaTime;
+				fpsCamera.transform.localPosition = Vector3.MoveTowards(fpsCamera.transform.localPosition, cameraPosition, step);
+			}
 		}
+			
 	}
 
 	[Command]
@@ -182,6 +192,14 @@ public class Player : NetworkBehaviour
 
 		NetworkServer.Spawn(bot);
 		// NetworkServer.SpawnWithClientAuthority(bot, connectionToClient);
+	}
+
+	private void MoveCameraForward() {
+		cameraPosition = new Vector3(0, 0.7f, 0.2f);
+	}
+
+	private void MoveCameraBack() {
+		cameraPosition = new Vector3(0, 0.7f, -0.09f);
 	}
 }
 

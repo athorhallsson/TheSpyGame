@@ -777,7 +777,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85925d0683a074fe68131339c8e817f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muzzleFlash: {fileID: 198743776823989762}
+  muzzleFlash: {fileID: 198353126717930666, guid: c2096f2ab98bb4606b7c0784580eacf6,
+    type: 2}
   gunAudio: {fileID: 82906292742405154}
   impactPrefab: {fileID: 1665836510878110, guid: a737cfdfa6b9747008b442cc54d14b48,
     type: 2}
@@ -1003,7 +1004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff7567b12d6b4e25a8f602da3c813aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotCooldown: 4
+  shotCooldown: 2
   shotEffects: {fileID: 114077027453414016}
   gun: {fileID: 1247329119466976}
 --- !u!124 &124456846795612050

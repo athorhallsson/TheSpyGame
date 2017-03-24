@@ -13,6 +13,8 @@ public class PlayerShooting : NetworkBehaviour
 	float elapsedTime;
 	bool canShoot;
 
+	bool shooting = false;
+
 	void Start() {
 		parentPlayerAnim = GetComponentInParent<NetworkAnimator>();
 		shotEffects.Initialize ();
@@ -30,20 +32,27 @@ public class PlayerShooting : NetworkBehaviour
 
 		elapsedTime += Time.deltaTime;
 
+		if (elapsedTime > shotCooldown && Input.GetKeyDown (KeyCode.Q)) {
+			shooting = !shooting;
+			elapsedTime = 0f;
+			this.parentPlayerAnim.animator.SetBool ("Shooting", shooting);
+			if (shooting) {
+				RpcDrawGun();
+			} else {
+				RpcHolsterGun();
+			}
+
+		}
+
 		if (Input.GetButtonDown ("Fire1")) {
-			if (elapsedTime > shotCooldown) {
+			if (elapsedTime > shotCooldown && shooting) {
 				elapsedTime = 0f;
-				this.parentPlayerAnim.animator.SetBool("Shooting", true);
-				//this.parentPlayerAnim.SetTrigger("Shooting");
-				CmdFireShot ();
+				CmdFireShot();
 			}
 		}
 	}
 
-	private IEnumerator FireGun() {
-		RpcDrawGun();
-		yield return new WaitForSeconds(2.0f);
-
+	private void FireGun() {
 		Transform camTransform = this.transform.FindChild("FirstPersonCharacter");
 		Vector3 origin = camTransform.position + (0.25f * camTransform.forward);
 		Vector3 direction = camTransform.forward;
@@ -75,10 +84,6 @@ public class PlayerShooting : NetworkBehaviour
 				bot.Panic (hit.point);
 			}
 		}
-
-		yield return new WaitForSeconds(1.5f);
-		this.parentPlayerAnim.animator.SetBool("Shooting", false);
-		RpcHolsterGun();
 	}
 
 	void OnDrawGizmosSelected() {
@@ -88,7 +93,7 @@ public class PlayerShooting : NetworkBehaviour
 
 	[Command]
 	void CmdFireShot() {
-		StartCoroutine(FireGun());
+		FireGun();
 	}
 
 	private void UpdateGunParent() {
@@ -116,11 +121,16 @@ public class PlayerShooting : NetworkBehaviour
 	[ClientRpc]
 	void RpcHolsterGun() {
 		this.parentPlayerAnim.animator.SetBool("Shooting", false);
+		Invoke ("HideGun", 1f);
+	}
+
+	void HideGun() {
 		gun.SetActive(false);
 	}
 
 	[ClientRpc]
 	void RpcProcessShotEffects(Vector3 point, bool hit) {
+		this.parentPlayerAnim.animator.SetTrigger("Shoot");
 		shotEffects.PlayShotEffects ();
 
 		if (hit) {

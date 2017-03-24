@@ -60,12 +60,14 @@ public class Player : NetworkBehaviour
 
 	void OnGUI(){
 		if (isLocalPlayer) {
-			GUI.Box(new Rect(Screen.width/2,Screen.height/2, 10, 10), "");
+			// Aim
+			GUI.Box(new Rect(Screen.width / 2,Screen.height / 2, 10, 10), "");
 		}
 		if (gameOver) {
-			var w = 500;
-			var h = 500;
-			Rect rect = new Rect((Screen.width-w)/2, (Screen.height-h)/2, w, h);
+			// Game over message
+			var w = 1000;
+			var h = 1000;
+			Rect rect = new Rect((Screen.width - w) / 2, (Screen.height - h) / 2, w, h);
 			GUI.Label(rect, message);
 		}
 	}
@@ -123,7 +125,10 @@ public class Player : NetworkBehaviour
 	}
 
 	public void Exit() {
-		Application.Quit();
+		Cursor.visible = true;
+		Cursor.lockState = CursorLockMode.None;
+		this.DisablePlayer ();
+		FindObjectOfType<NetworkLobbyManager> ().SendReturnToLobby ();
 	}
 		
 	void Respawn() {
@@ -156,6 +161,9 @@ public class Player : NetworkBehaviour
 					anim.animator.SetBool ("Running", false);
 					anim.animator.SetBool ("Walking", false);
 				}
+			}
+			if (Input.GetKeyDown(KeyCode.J)) {
+				Exit();
 			}
 		}
 	}

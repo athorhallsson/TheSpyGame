@@ -182,7 +182,7 @@ public class Bot : NetworkBehaviour {
 		agent.speed = 6.0f;
 		this.audioSource.pitch = Random.Range (0.8f, 1.2f);
 		anim.animator.SetBool("Running", true);
-		Invoke("Scream", Random.Range(0.0f, 4.0f));
+		//Invoke("Scream", Random.Range(0.0f, 2.0f));
 		agent.Resume();
 	}
 
@@ -201,10 +201,15 @@ public class Bot : NetworkBehaviour {
 
 	public void Die() {
 		agent.Stop ();
+		agent.enabled = false;
 		anim.animator.SetTrigger( "Death");
 		fsm.ChangeState (States.Dead, StateTransition.Overwrite);
 		this.GetComponent<CapsuleCollider> ().enabled = false;
 		this.enabled = false;
+	}
+
+	void Dead_Update() {
+
 	}
 
 	public void Panic(Vector3 point) {

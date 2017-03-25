@@ -100,31 +100,16 @@ public class Player : NetworkBehaviour
 		playerShooting.enabled = true;
 		playerHealth.enabled = true;
 	}
-		
+
 	public void Die() {
 		anim.SetTrigger("Death");
-		DisablePlayer();
-		ShowGameOverText (playerName + " was eliminated");
-		Invoke ("RpcExit", 5.0f);
-	}
-
-	public void ShowGameOverText(string message) {
-		GameObject goText = GameObject.FindGameObjectWithTag("GameOverText");
-		Text gameOverText = goText.GetComponent<Text>();
-		gameOverText.text = message;
-		gameOverText.enabled = true;
 	}
 
 	[ClientRpc]
-	public void RpcExit() {
-		Exit ();
-	}
-
-	public void Exit() {
+	public void RpcEndGame() {
 		Cursor.visible = true;
 		Cursor.lockState = CursorLockMode.None;
-		this.DisablePlayer ();
-		FindObjectOfType<NetworkLobbyManager> ().SendReturnToLobby ();
+		DisablePlayer ();
 	}
 
 	void Update() {
@@ -149,9 +134,6 @@ public class Player : NetworkBehaviour
 					anim.animator.SetBool ("Running", false);
 					anim.animator.SetBool ("Walking", false);
 				}
-			}
-			if (Input.GetKeyDown(KeyCode.J)) {
-				Exit();
 			}
 			if (fpsCamera.enabled) {
 				float step = 1.0f * Time.deltaTime;

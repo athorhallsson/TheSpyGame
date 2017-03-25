@@ -142,9 +142,11 @@ public class Bot : NetworkBehaviour {
 
 	// Walking
 	void Walking_Enter() {
-		ChooseDestination();
-		anim.animator.SetBool("Walking", true);
-		agent.Resume();
+		if (agent.enabled) {
+			ChooseDestination();
+			anim.animator.SetBool("Walking", true);
+			agent.Resume();
+		}
 	}
 
 	void Walking_Update() {
@@ -178,7 +180,7 @@ public class Bot : NetworkBehaviour {
 	}
 
 	void Panic_Enter() {
-		print ("bla");
+		agent.destination = goals[20].transform.position;
 		agent.speed = 6.0f;
 		this.audioSource.pitch = Random.Range (0.8f, 1.2f);
 		anim.animator.SetBool("Running", true);
@@ -200,10 +202,13 @@ public class Bot : NetworkBehaviour {
 	}
 
 	public void Die() {
+		fsm.ChangeState (States.Dead, StateTransition.Overwrite);
+	}
+
+	void Dead_Enter() {
+		anim.animator.SetTrigger( "Death");
 		agent.Stop ();
 		agent.enabled = false;
-		anim.animator.SetTrigger( "Death");
-		fsm.ChangeState (States.Dead, StateTransition.Overwrite);
 		this.GetComponent<CapsuleCollider> ().enabled = false;
 		this.enabled = false;
 	}
@@ -220,7 +225,7 @@ public class Bot : NetworkBehaviour {
 //		positions.OrderBy (s => Vector3.Distance (s.position, point));
 //		agent.destination = positions.ElementAt(5).position;
 
-		agent.destination = goals[10].transform.position;
+
 		
 		fsm.ChangeState (States.Panic, StateTransition.Overwrite);
 	}

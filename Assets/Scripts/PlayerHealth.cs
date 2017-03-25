@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 
 public class PlayerHealth : NetworkBehaviour 
@@ -14,9 +15,20 @@ public class PlayerHealth : NetworkBehaviour
 		bot = GetComponent<Bot> ();
 	}
 
+	void Update() {
+		if (Input.GetKeyDown(KeyCode.J)) {
+			RestartGame();
+		}
+	}
+
 	[ServerCallback]
 	void OnEnable() {
 		health = maxHealth;
+	}
+
+	[Server]
+	void RestartGame() {
+		GameOver();
 	}
 
 	[Server]
@@ -30,7 +42,37 @@ public class PlayerHealth : NetworkBehaviour
 		died = health <= 0;
 
 		RpcTakeDamage (died);
+
+		if (died) {
+			GameOver();
+		}
+
 		return died;
+	}
+
+	void GameOver() {
+		// Disable and unlock all players
+		foreach (Player p in FindObjectsOfType<Player>()) {
+			p.RpcEndGame();
+		}
+
+		// Show GO text on all players
+		RpcShowGameOverText (player.playerName + " was eliminated");
+
+		// Wait 5 seconds and kick back to Lobby once
+		Invoke ("EndGame", 5.0f);
+	}
+
+	[ClientRpc]
+	public void RpcShowGameOverText(string message) {
+		GameObject goText = GameObject.FindGameObjectWithTag("GameOverText");
+		Text gameOverText = goText.GetComponent<Text>();
+		gameOverText.text = message;
+		gameOverText.enabled = true;
+	}
+
+	public void EndGame() {
+		FindObjectOfType<NetworkLobbyManager> ().SendReturnToLobby ();
 	}
 
 	[ClientRpc]

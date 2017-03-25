@@ -17,8 +17,8 @@ public class ShotEffectsManager : MonoBehaviour
 	}
 		
 	public void PlayShotEffects() {
-		muzzleFlash.Stop(true);
-		muzzleFlash.Play(true);
+		if(muzzleFlash.isPlaying) muzzleFlash.Stop();
+		muzzleFlash.Play();
 		gunAudio.Stop();
 		gunAudio.Play();
 	}

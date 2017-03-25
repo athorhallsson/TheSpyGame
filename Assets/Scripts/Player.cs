@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Player : NetworkBehaviour 
 {
-	[SerializeField] float respawnTime;
+	[SyncVar (hook = "OnNameChanged")] public string playerName;
 
 	[SerializeField] GameObject[] models;
 	public GameObject model;
@@ -22,11 +22,8 @@ public class Player : NetworkBehaviour
 	private Camera fpsCamera;
 	private AudioListener fpsAudio;
 	private FirstPersonController firstPersonController;
-	GameObject mainCamera;
 
-	private bool gameOver = false;
-	private string message = "";
-
+	private GameObject mainCamera;
 	private Vector3 cameraPosition;
 
 	// Bots
@@ -39,12 +36,16 @@ public class Player : NetworkBehaviour
 //		body.transform.position = transform.position;
 //		body.transform.position += new Vector3(0f, -1f, 0f);
 //		body.transform.parent = transform;
-
 		playerShooting = this.GetComponent<PlayerShooting> ();
 		playerHealth = this.GetComponent<PlayerHealth> ();
 		fpsCamera = this.GetComponentInChildren<Camera> ();
 		fpsAudio = this.GetComponentInChildren<AudioListener> ();
 		firstPersonController = this.GetComponent<FirstPersonController> ();
+	}
+
+	void Start() {
+		mainCamera = Camera.main.gameObject;
+		EnablePlayer ();
 	}
 
 	private void SetModel(int number) {
@@ -65,19 +66,6 @@ public class Player : NetworkBehaviour
 			// Aim
 			GUI.Box(new Rect(Screen.width / 2,Screen.height / 2, 10, 10), "");
 		}
-		if (gameOver) {
-			// Game over message
-			var w = 1000;
-			var h = 1000;
-			Rect rect = new Rect((Screen.width - w) / 2, (Screen.height - h) / 2, w, h);
-			GUI.Label(rect, message);
-		}
-	}
-
-	void Start() {
-		mainCamera = Camera.main.gameObject;
-
-		EnablePlayer ();
 	}
 
 	void DisablePlayer() {
@@ -110,20 +98,21 @@ public class Player : NetworkBehaviour
 		playerShooting.enabled = true;
 		playerHealth.enabled = true;
 	}
-
-	public void Despawn() {
-	}
-
+		
 	public void Die() {
 		anim.SetTrigger("Death");
 		DisablePlayer();
-		gameOver = true;
-        if (isLocalPlayer) {
-			message = "You lose!";
-		} else {
-			message = "You win!";
+		if (isLocalPlayer) {
+			ShowGameOverText (playerName + " was eliminated");
 		}
 		Invoke ("Exit", 5.0f);
+	}
+
+	public void ShowGameOverText(string message) {
+		GameObject goText = GameObject.FindGameObjectWithTag("GameOverText");
+		Text gameOverText = goText.GetComponent<Text>();
+		gameOverText.text = message;
+		gameOverText.enabled = true;
 	}
 
 	public void Exit() {
@@ -131,17 +120,6 @@ public class Player : NetworkBehaviour
 		Cursor.lockState = CursorLockMode.None;
 		this.DisablePlayer ();
 		FindObjectOfType<NetworkLobbyManager> ().SendReturnToLobby ();
-	}
-		
-	void Respawn() {
-		if (isLocalPlayer) {
-			anim.SetTrigger("Respawn");
-			Transform spawn = NetworkManager.singleton.GetStartPosition ();
-			transform.position = spawn.position;
-			transform.rotation = spawn.rotation;
-		}
-
-		EnablePlayer ();
 	}
 
 	void Update() {
@@ -175,7 +153,6 @@ public class Player : NetworkBehaviour
 				fpsCamera.transform.localPosition = Vector3.MoveTowards(fpsCamera.transform.localPosition, cameraPosition, step);
 			}
 		}
-			
 	}
 
 	[Command]
@@ -200,6 +177,11 @@ public class Player : NetworkBehaviour
 
 	private void MoveCameraBack() {
 		cameraPosition = new Vector3(0, 0.7f, -0.09f);
+	}
+
+	void OnNameChanged(string value) {
+		playerName = value;
+		gameObject.name = playerName;
 	}
 }
 

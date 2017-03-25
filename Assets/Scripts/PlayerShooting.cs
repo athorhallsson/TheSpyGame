@@ -22,7 +22,7 @@ public class PlayerShooting : NetworkBehaviour
 		parentPlayerAnim = GetComponentInParent<NetworkAnimator>();
 		shotEffects.Initialize ();
 		player = GetComponentInParent <Player>();
-		elapsedTime = 0f;
+		elapsedTime = shotCooldown;
 		if (isLocalPlayer) {
 			canShoot = true;
 		}

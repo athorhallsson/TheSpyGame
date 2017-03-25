@@ -13,10 +13,10 @@ public class Bot : NetworkBehaviour {
 	[SyncVar] public int modelNumber = -1;
 	private bool modelReady = false;
 
-	[SerializeField] GameObject fireAlarmExit;
 	private AudioSource audioSource;
 	private GameObject[] goals;
 	private GameObject[] exits;
+	private GameObject fireAlarmExit;
 	private NavMeshAgent agent;
 	private NetworkAnimator anim;
 	private NetworkIdentity ident;
@@ -96,6 +96,7 @@ public class Bot : NetworkBehaviour {
 	private void FindDestinations() {
 		goals = GameObject.FindGameObjectsWithTag("Goal");
 		exits = GameObject.FindGameObjectsWithTag("Exit");
+		fireAlarmExit = GameObject.Find("Emergency Exit");
 	}
 
 	void SetDestination(GameObject dest) {

@@ -43,7 +43,7 @@ public class PlayerHealth : NetworkBehaviour
 
 		RpcTakeDamage (died);
 
-		if (died) {
+		if (bot == null && died) {
 			GameOver();
 		}
 

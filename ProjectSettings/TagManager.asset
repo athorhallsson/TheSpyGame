@@ -7,6 +7,7 @@ TagManager:
   - Goal
   - Bot
   - GameOverText
+  - Exit
   layers:
   - Default
   - TransparentFX

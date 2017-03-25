@@ -13,6 +13,7 @@ public class Bot : NetworkBehaviour {
 	[SyncVar] public int modelNumber = -1;
 	private bool modelReady = false;
 
+	private Vector3 gunshotPoint;
 	private AudioSource audioSource;
 	private GameObject[] goals;
 	private GameObject[] exits;
@@ -125,6 +126,23 @@ public class Bot : NetworkBehaviour {
 		rotationSpeed = Random.Range(100.0f, 200.0f);
 	}
 
+	GameObject FindClosestGoal(Vector3 target) {
+		float bestDistance = 1000000000.0f;
+		GameObject bestGoal = null;
+
+		if (goals.Length > 0 && agent != null) {
+			foreach (GameObject goal in goals) {
+				float distance = (goal.transform.position - target).magnitude;
+				if (distance < bestDistance) {
+					bestDistance = distance;
+					bestGoal = goal;
+				}
+			}
+		}
+
+		return bestGoal;
+	}
+
 	bool ReachedDestination() {
 		return agent != null && !agent.pathPending && agent.remainingDistance < 1.0f;
 	}
@@ -209,8 +227,17 @@ public class Bot : NetworkBehaviour {
 	}
 
 	// Panic
+	private void FindPanicDestination() {
+		Vector3 pos = transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+		Vector3 toShot = (gunshotPoint - pos).normalized;
+		Vector3 away = pos + (toShot * -1.0f * 10.0f);
+		Vector3 goal = new Vector3(away.x, pos.y, away.z);
+
+		SetDestination(FindClosestGoal(goal));
+	}
+
 	void Panic_Enter() {
-		ChooseDestination();
+		FindPanicDestination();
 		agent.speed = 6.0f;
 		anim.animator.SetBool("Running", true);
 		//Invoke("Scream", Random.Range(0.0f, 2.0f));
@@ -231,6 +258,7 @@ public class Bot : NetworkBehaviour {
 	}
 
 	public void Panic(Vector3 point) {
+		gunshotPoint = point;
 		fsm.ChangeState (States.Panic, StateTransition.Overwrite);
 	}
 

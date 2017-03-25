@@ -95,7 +95,7 @@ public class PlayerShooting : NetworkBehaviour
 		foreach (GameObject obj in objects) {
 			Bot bot = obj.GetComponent<Bot>();
 			if (bot != null && bot.enabled) {
-				bot.Panic (hit.point);
+				bot.Panic (origin);
 			}
 		}
 	}

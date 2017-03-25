@@ -86,6 +86,8 @@ public class PlayerShooting : NetworkBehaviour
 			} else {
 				RpcProcessShotEffects (hit.point, false);
 			}
+		} else {
+			RpcProcessMissEffects ();
 		}
 
 		// Make bots panic
@@ -152,5 +154,11 @@ public class PlayerShooting : NetworkBehaviour
 		} else {
 			shotEffects.PlayHitEffect (point);
 		}
+	}
+
+	[ClientRpc]
+	void RpcProcessMissEffects() {
+		this.parentPlayerAnim.animator.SetTrigger("Shoot");
+		shotEffects.PlayShotEffects ();
 	}
 }

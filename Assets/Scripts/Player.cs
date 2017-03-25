@@ -139,6 +139,16 @@ public class Player : NetworkBehaviour
 				float step = 1.0f * Time.deltaTime;
 				fpsCamera.transform.localPosition = Vector3.MoveTowards(fpsCamera.transform.localPosition, cameraPosition, step);
 			}
+			if (Input.GetKeyDown(KeyCode.Escape)) {
+				
+					Cursor.visible = true;
+					Cursor.lockState = CursorLockMode.None;
+//				}
+//				else {
+//					Cursor.visible = false;
+//					Cursor.lockState = CursorLockMode.Locked;
+//				}
+			}
 		}
 	}
 

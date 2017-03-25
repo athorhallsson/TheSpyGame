@@ -16,6 +16,7 @@ public class Bot : NetworkBehaviour {
 	private AudioSource audioSource;
 	private GameObject[] goals;
 	private GameObject[] exits;
+	private GameObject fireAlarmExit;
 	private NavMeshAgent agent;
 	private NetworkAnimator anim;
 	private NetworkIdentity ident;
@@ -38,6 +39,7 @@ public class Bot : NetworkBehaviour {
 		Looking,
 		Dead,
 		Leaving,
+		FireAlarm,
 		Panic
 	}
 
@@ -94,23 +96,26 @@ public class Bot : NetworkBehaviour {
 	private void FindDestinations() {
 		goals = GameObject.FindGameObjectsWithTag("Goal");
 		exits = GameObject.FindGameObjectsWithTag("Exit");
+		fireAlarmExit = GameObject.Find("Emergency Exit");
+	}
+
+	void SetDestination(GameObject dest) {
+		agent.ResetPath();
+		agent.destination = dest.transform.position;
+		debugObject = dest;
 	}
 
 	void ChooseExit() {
 		if (exits.Length > 0 && agent != null) {
-			agent.ResetPath();
 			GameObject exit = exits[Random.Range (0, exits.Length)];
-			agent.destination = exit.transform.position;
-			debugObject = exit;
+			SetDestination(exit);
 		}
 	}
 
 	void ChooseDestination() {
 		if (goals.Length > 0 && agent != null) {
-			agent.ResetPath();
 			GameObject goal = goals[Random.Range (0, goals.Length)];
-			agent.destination = goal.transform.position;
-			debugObject = goal;
+			SetDestination(goal);
 		}
 	}
 
@@ -122,6 +127,11 @@ public class Bot : NetworkBehaviour {
 
 	bool ReachedDestination() {
 		return agent != null && !agent.pathPending && agent.remainingDistance < 1.0f;
+	}
+
+	private void Scream() {
+		this.audioSource.pitch = Random.Range (0.8f, 1.2f);
+		this.audioSource.Play();
 	}
 
 	// AI State Machine -------------------------------------------------------
@@ -172,12 +182,12 @@ public class Bot : NetworkBehaviour {
 		debugInfo = agent.remainingDistance.ToString();
 
 		if (ReachedDestination()) {
-			anim.animator.SetBool("Walking", false);
 			fsm.ChangeState(States.Deciding);
 		}
 	}
 
 	void Walking_Finally() {
+		anim.animator.SetBool("Walking", false);
 		agent.Stop ();
 	}
 
@@ -202,7 +212,6 @@ public class Bot : NetworkBehaviour {
 	void Panic_Enter() {
 		ChooseDestination();
 		agent.speed = 6.0f;
-		this.audioSource.pitch = Random.Range (0.8f, 1.2f);
 		anim.animator.SetBool("Running", true);
 		//Invoke("Scream", Random.Range(0.0f, 2.0f));
 		agent.Resume();
@@ -211,22 +220,18 @@ public class Bot : NetworkBehaviour {
 	void Panic_Update() {
 		debugInfo = agent.remainingDistance.ToString();
 		if (ReachedDestination()) {
-			anim.animator.SetBool("Running", false);
 			fsm.ChangeState(States.Deciding);
 		}
 	}
 
 	void Panic_Finally() {
+		anim.animator.SetBool("Running", false);
 		agent.Stop ();
 		agent.speed = 1.2f;
 	}
 
 	public void Panic(Vector3 point) {
 		fsm.ChangeState (States.Panic, StateTransition.Overwrite);
-	}
-
-	private void Scream() {
-		this.audioSource.Play();
 	}
 
 	// Death
@@ -259,6 +264,11 @@ public class Bot : NetworkBehaviour {
 		}
 	}
 
+	[ClientRpc]
+	void RpcLeave() {
+		GameObject.Destroy(gameObject);
+	}
+
 	void Leaving_Update() {
 		debugInfo = agent.remainingDistance.ToString();
 
@@ -267,8 +277,31 @@ public class Bot : NetworkBehaviour {
 		}
 	}
 
-	[ClientRpc]
-	void RpcLeave() {
-		GameObject.Destroy(gameObject);
+	// Fire Alarm
+	void FireAlarm_Enter() {
+		SetDestination(fireAlarmExit);
+
+		agent.speed = 6.0f;
+		anim.animator.SetBool("Running", true);
+		//Invoke("Scream", Random.Range(0.0f, 2.0f));
+		agent.Resume();
+	}
+
+	void FireAlarm_Update() {
+		debugInfo = agent.remainingDistance.ToString();
+
+		if (ReachedDestination()) {
+			fsm.ChangeState(States.Deciding);
+		}
+	}
+
+	void FireAlarm_Finally() {
+		anim.animator.SetBool("Running", false);
+		agent.Stop ();
+		agent.speed = 1.2f;
+	}
+
+	public void FireAlarm() {
+		fsm.ChangeState (States.FireAlarm, StateTransition.Overwrite);
 	}
 }

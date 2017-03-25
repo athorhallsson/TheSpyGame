@@ -102,10 +102,8 @@ public class Player : NetworkBehaviour
 	public void Die() {
 		anim.SetTrigger("Death");
 		DisablePlayer();
-		if (isLocalPlayer) {
-			ShowGameOverText (playerName + " was eliminated");
-		}
-		Invoke ("Exit", 5.0f);
+		ShowGameOverText (playerName + " was eliminated");
+		Invoke ("RpcExit", 5.0f);
 	}
 
 	public void ShowGameOverText(string message) {
@@ -113,6 +111,11 @@ public class Player : NetworkBehaviour
 		Text gameOverText = goText.GetComponent<Text>();
 		gameOverText.text = message;
 		gameOverText.enabled = true;
+	}
+
+	[ClientRpc]
+	public void RpcExit() {
+		Exit ();
 	}
 
 	public void Exit() {

@@ -37,9 +37,9 @@ public class PlayerShooting : NetworkBehaviour
 			elapsedTime = 0f;
 			this.parentPlayerAnim.animator.SetBool ("Shooting", shooting);
 			if (shooting) {
-				RpcDrawGun();
+				CmdDrawGun();
 			} else {
-				RpcHolsterGun();
+				CmdHolsterGun();
 			}
 
 		}
@@ -51,6 +51,17 @@ public class PlayerShooting : NetworkBehaviour
 			}
 		}
 	}
+
+	[Command]
+	void CmdDrawGun() {
+		RpcDrawGun();
+	}
+
+	[Command]
+	void CmdHolsterGun() {
+		RpcHolsterGun();
+	}
+
 
 	private void FireGun() {
 		Transform camTransform = this.transform.FindChild("FirstPersonCharacter");

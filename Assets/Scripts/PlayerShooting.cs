@@ -76,8 +76,6 @@ public class PlayerShooting : NetworkBehaviour
 
 		if (result) {
 			PlayerHealth enemy = hit.transform.GetComponentInParent<PlayerHealth> ();
-			print ("Hit:");
-			print(enemy);
 
 			if (enemy != null) {
 				enemy.TakeDamage ();

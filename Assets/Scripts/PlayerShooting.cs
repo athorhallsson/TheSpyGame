@@ -13,12 +13,15 @@ public class PlayerShooting : NetworkBehaviour
 	float elapsedTime;
 	bool canShoot;
 
+	private Player player;
+
 	bool shooting = false;
 
 	void Start() {
+		
 		parentPlayerAnim = GetComponentInParent<NetworkAnimator>();
 		shotEffects.Initialize ();
-
+		player = GetComponentInParent <Player>();
 		elapsedTime = 0f;
 		if (isLocalPlayer) {
 			canShoot = true;
@@ -123,12 +126,14 @@ public class PlayerShooting : NetworkBehaviour
 
 	[ClientRpc]
 	void RpcDrawGun() {
+		player.RotateAndAim ();
 		UpdateGunParent();
 		gun.SetActive(true);
 	}
 
 	[ClientRpc]
 	void RpcHolsterGun() {
+		player.RotateBack ();
 		this.parentPlayerAnim.animator.SetBool("Shooting", false);
 		Invoke ("HideGun", 1f);
 	}

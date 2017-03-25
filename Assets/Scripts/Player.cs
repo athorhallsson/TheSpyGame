@@ -170,5 +170,13 @@ public class Player : NetworkBehaviour
 		playerName = value;
 		gameObject.name = playerName;
 	}
+
+	public void RotateAndAim() {
+		model.transform.localEulerAngles = new Vector3 (0, -20, 0);
+	}
+
+	public void RotateBack() {
+		model.transform.localEulerAngles = new Vector3 (0, 0, 0);
+	}
 }
 

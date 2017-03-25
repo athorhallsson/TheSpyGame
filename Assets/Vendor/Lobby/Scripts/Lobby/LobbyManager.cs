@@ -34,6 +34,7 @@ namespace Prototype.NetworkLobby
         protected RectTransform currentPanel;
 
 		public Button backButton;
+		public Button quitButton;
 
         public Text statusInfo;
         public Text hostInfo;
@@ -139,6 +140,7 @@ namespace Prototype.NetworkLobby
             else
             {
 				backButton.gameObject.SetActive(false);
+				quitButton.gameObject.SetActive(true);
                 SetServerInfo("Offline", "None");
                 _isMatchmaking = false;
             }
@@ -184,6 +186,11 @@ namespace Prototype.NetworkLobby
                  
         public void StopHostClbk()
         {
+			NetworkLobbyManager manager = FindObjectOfType<NetworkLobbyManager> ();
+			if (manager != null) {
+				manager.SendReturnToLobby ();
+			}
+
             if (_isMatchmaking)
             {
 				matchMaker.DestroyMatch((NetworkID)_currentMatchID, 0, OnDestroyMatch);

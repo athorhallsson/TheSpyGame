@@ -11,4 +11,8 @@ public class SpyLobbyHook : LobbyHook {
 		Player gPlayer = gamePlayer.GetComponent<Player> ();
 		gPlayer.playerName = lPlayer.playerName;
 	}
+
+	public void Quit() {
+		Application.Quit();
+	}
 }

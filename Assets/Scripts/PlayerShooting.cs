@@ -89,8 +89,10 @@ public class PlayerShooting : NetworkBehaviour
 		} else {
 			RpcProcessMissEffects ();
 		}
+		MakeBotsPanic(origin);
+	}
 
-		// Make bots panic
+	void MakeBotsPanic(Vector3 origin) {
 		GameObject[] objects = GameObject.FindGameObjectsWithTag("Bot");
 		foreach (GameObject obj in objects) {
 			Bot bot = obj.GetComponent<Bot>();

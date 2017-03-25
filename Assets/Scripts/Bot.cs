@@ -309,7 +309,7 @@ public class Bot : NetworkBehaviour {
 	void FireAlarm_Enter() {
 		SetDestination(fireAlarmExit);
 
-		agent.speed = 6.0f;
+		agent.speed = 3.0f;
 		anim.animator.SetBool("Running", true);
 		//Invoke("Scream", Random.Range(0.0f, 2.0f));
 		agent.Resume();

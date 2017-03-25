@@ -173,7 +173,7 @@ public class Player : NetworkBehaviour
 	}
 
 	private void MoveCameraBack() {
-		cameraPosition = new Vector3(0, 0.7f, -0.09f);
+		cameraPosition = new Vector3(0, 0.7f, 0.0f);
 	}
 
 	void OnNameChanged(string value) {
@@ -198,6 +198,17 @@ public class Player : NetworkBehaviour
 	[Command]
 	public void CmdPlayFireAlarm() {
 		RpcStartSound();
+		MakeBotsFirePanic ();
+	}
+
+	void MakeBotsFirePanic() {
+		GameObject[] objects = GameObject.FindGameObjectsWithTag("Bot");
+		foreach (GameObject obj in objects) {
+			Bot bot = obj.GetComponent<Bot>();
+			if (bot != null && bot.enabled) {
+				bot.FireAlarm();
+			}
+		}
 	}
 
 	[ClientRpc]

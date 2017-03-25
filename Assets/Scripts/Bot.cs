@@ -253,8 +253,7 @@ public class Bot : NetworkBehaviour {
 	// Leaving
 	void Leaving_Enter() {
 		if (agent.enabled) {
-			// ChooseExit();
-			ChooseDestination();
+			ChooseExit();
 			anim.animator.SetBool("Walking", true);
 			agent.Resume();
 		}

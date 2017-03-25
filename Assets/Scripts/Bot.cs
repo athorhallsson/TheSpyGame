@@ -231,15 +231,19 @@ public class Bot : NetworkBehaviour {
 
 	// Death
 	public void Die() {
-		fsm.ChangeState (States.Dead, StateTransition.Overwrite);
+		anim.animator.SetTrigger( "Death");
+		this.GetComponent<CapsuleCollider> ().enabled = false;
+
+		if (fsm != null) {
+			fsm.ChangeState (States.Dead, StateTransition.Overwrite);
+		}
+
+		this.enabled = false;
 	}
 
 	void Dead_Enter() {
-		anim.animator.SetTrigger( "Death");
 		agent.Stop ();
 		agent.enabled = false;
-		this.GetComponent<CapsuleCollider> ().enabled = false;
-		this.enabled = false;
 	}
 
 	void Dead_Update() {

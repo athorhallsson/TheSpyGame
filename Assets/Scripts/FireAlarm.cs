@@ -1,15 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class FireAlarm : MonoBehaviour {
-
+public class FireAlarm : NetworkBehaviour
+{
     [SerializeField] AudioSource fireAlarm;
 
     private GameObject player;
     private bool isPushed;
     private bool ableToPush;
     private float distance = 5f;
+    //Call the server and tell it to execute the firealarm
+
 	// Use this for initialization
 	void Start () {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -21,12 +24,10 @@ public class FireAlarm : MonoBehaviour {
 	void Update () {
        
         if (GetComponent<Renderer>().isVisible) {
-            if (((player.transform.position - this.transform.position).sqrMagnitude < 3 * 1))
-            {
+            if (((player.transform.position - this.transform.position).sqrMagnitude < 3 * 1)) {
                 ableToPush = true;
             }
-            else
-            {
+            else {
                 ableToPush = false;
             }
         }
@@ -37,11 +38,24 @@ public class FireAlarm : MonoBehaviour {
             //Play fire alarm
             if(ableToPush && !fireAlarm.isPlaying)
             {
-                startSound();
+                CmdPlayFireAlarm();
             }
         }
     }
-    private void startSound() {
+
+    [Command]
+    private void CmdPlayFireAlarm() {
+        RpcStartSound();
+    }
+
+    [ClientRpc]
+    private void RpcStartSound() {
+        playSound();
+    }
+
+    private void playSound() {
         fireAlarm.Play();
-    }   
+    }
+
+
 }

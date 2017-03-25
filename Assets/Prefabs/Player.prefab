@@ -778,8 +778,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85925d0683a074fe68131339c8e817f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muzzleFlash: {fileID: 198353126717930666, guid: c2096f2ab98bb4606b7c0784580eacf6,
-    type: 2}
+  muzzleFlash: {fileID: 198743776823989762}
   gunAudio: {fileID: 82906292742405154}
   impactPrefab: {fileID: 1665836510878110, guid: a737cfdfa6b9747008b442cc54d14b48,
     type: 2}
@@ -1075,7 +1074,7 @@ ParticleSystem:
   simulationSpeed: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   autoRandomSeed: 1
   startDelay:
     scalar: 0

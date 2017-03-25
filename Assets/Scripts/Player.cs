@@ -188,5 +188,24 @@ public class Player : NetworkBehaviour
 	public void RotateBack() {
 		model.transform.localEulerAngles = new Vector3 (0, 0, 0);
 	}
+
+
+	public void PlayFireAlarm() {
+		CmdPlayFireAlarm ();
+	}
+
+
+	[Command]
+	public void CmdPlayFireAlarm() {
+		RpcStartSound();
+	}
+
+	[ClientRpc]
+	public void RpcStartSound() {
+		GameObject[] alarms = GameObject.FindGameObjectsWithTag ("FireAlarm");
+		FireAlarm alarm = alarms [0].GetComponent<FireAlarm> ();
+		alarm.playSound();
+	}
+
 }
 

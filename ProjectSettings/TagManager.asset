@@ -8,6 +8,7 @@ TagManager:
   - Bot
   - GameOverText
   - Exit
+  - FireAlarm
   layers:
   - Default
   - TransparentFX

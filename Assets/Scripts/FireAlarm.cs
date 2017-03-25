@@ -7,24 +7,29 @@ public class FireAlarm : NetworkBehaviour
 {
     [SerializeField] AudioSource fireAlarm;
 
-    private GameObject player;
-    private bool isPushed;
+    private Player player;
     private bool ableToPush;
     private float distance = 5f;
     //Call the server and tell it to execute the firealarm
 
 	// Use this for initialization
 	void Start () {
-        player = GameObject.FindGameObjectWithTag("Player");
+		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+		foreach (GameObject p in players) {
+			if (p.GetComponent<Player> ().isLocalPlayer) {
+				player = p.GetComponent<Player>();
+			}
+		}
         ableToPush = false;
-        isPushed = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
        
         if (GetComponent<Renderer>().isVisible) {
-            if (((player.transform.position - this.transform.position).sqrMagnitude < 3 * 1)) {
+
+			float dist = Vector3.Distance(player.transform.position, this.transform.position);
+			if (dist < distance) {
                 ableToPush = true;
             }
             else {
@@ -36,24 +41,14 @@ public class FireAlarm : NetworkBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E)) {
             //Play fire alarm
-            if(ableToPush && !fireAlarm.isPlaying)
+            if (ableToPush && !fireAlarm.isPlaying)
             {
-                CmdPlayFireAlarm();
+				player.PlayFireAlarm ();
             }
         }
     }
 
-    [Command]
-    private void CmdPlayFireAlarm() {
-        RpcStartSound();
-    }
-
-    [ClientRpc]
-    private void RpcStartSound() {
-        playSound();
-    }
-
-    private void playSound() {
+    public void playSound() {
         fireAlarm.Play();
     }
 

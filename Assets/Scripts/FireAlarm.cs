@@ -6,38 +6,42 @@ public class FireAlarm : MonoBehaviour {
 
     [SerializeField] AudioSource fireAlarm;
 
+    private GameObject player;
     private bool isPushed;
     private bool ableToPush;
+    private float distance = 5f;
 	// Use this for initialization
 	void Start () {
-
+        player = GameObject.FindGameObjectWithTag("Player");
         ableToPush = false;
         isPushed = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        print("Visible " + GetComponent<Renderer>().isVisible);
+       
         if (GetComponent<Renderer>().isVisible) {
-            ableToPush = true;
+            if (((player.transform.position - this.transform.position).sqrMagnitude < 3 * 1))
+            {
+                ableToPush = true;
+            }
+            else
+            {
+                ableToPush = false;
+            }
         }
         else {
             ableToPush = false;
         }
         if (Input.GetKeyDown(KeyCode.E)) {
             //Play fire alarm
-            if(ableToPush)
+            if(ableToPush && !fireAlarm.isPlaying)
             {
-                isPushed = true;
                 startSound();
-                isPushed = false;
             }
         }
     }
     private void startSound() {
-        if (isPushed)
-        {
-            fireAlarm.Play();
-        }
-    }
+        fireAlarm.Play();
+    }   
 }

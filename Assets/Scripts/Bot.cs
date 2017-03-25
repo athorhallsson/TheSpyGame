@@ -15,6 +15,7 @@ public class Bot : NetworkBehaviour {
 
 	private AudioSource audioSource;
 	private GameObject[] goals;
+	private GameObject[] exits;
 	private NavMeshAgent agent;
 	private NetworkAnimator anim;
 	private NetworkIdentity ident;
@@ -36,6 +37,7 @@ public class Bot : NetworkBehaviour {
 		Walking,
 		Looking,
 		Dead,
+		Leaving,
 		Panic
 	}
 
@@ -48,7 +50,7 @@ public class Bot : NetworkBehaviour {
 		anim = GetComponent<NetworkAnimator>();
 		anim.enabled = false;
 
-		FindGoals();
+		FindDestinations();
 	}
 
 	void Start() {
@@ -89,16 +91,26 @@ public class Bot : NetworkBehaviour {
 	}
 
 	// Navigation -------------------------------------------------------------
-	private void FindGoals() {
+	private void FindDestinations() {
 		goals = GameObject.FindGameObjectsWithTag("Goal");
+		exits = GameObject.FindGameObjectsWithTag("Exit");
+	}
+
+	void ChooseExit() {
+		if (exits.Length > 0 && agent != null) {
+			agent.ResetPath();
+			GameObject exit = exits[Random.Range (0, exits.Length)];
+			agent.destination = exit.transform.position;
+			debugObject = exit;
+		}
 	}
 
 	void ChooseDestination() {
 		if (goals.Length > 0 && agent != null) {
+			agent.ResetPath();
 			GameObject goal = goals[Random.Range (0, goals.Length)];
 			agent.destination = goal.transform.position;
 			debugObject = goal;
-			agent.Resume();
 		}
 	}
 
@@ -106,6 +118,10 @@ public class Bot : NetworkBehaviour {
 		rotationRemaining = Random.Range(30.0f, 210.0f);
 		rotationDirection = Random.Range(0.0f, 1.0f) < 0.5f ? 1f : -1f;
 		rotationSpeed = Random.Range(100.0f, 200.0f);
+	}
+
+	bool ReachedDestination() {
+		return agent != null && !agent.pathPending && agent.remainingDistance < 1.0f;
 	}
 
 	// AI State Machine -------------------------------------------------------
@@ -118,17 +134,20 @@ public class Bot : NetworkBehaviour {
 
 	// Deciding
 	void Deciding_Enter() {
-		switch (Random.Range(0, 3)) {
-			case 0:
-				fsm.ChangeState(States.Idle);
-				break;
-			case 1:
-				fsm.ChangeState(States.Walking);
-				break;
-			case 2:
-				fsm.ChangeState(States.Looking);
-				break;
+		float n = Random.Range(0f, 1.0f);
+		States nextState;
+
+		if (n < 0.02f) {
+			nextState = States.Leaving;
+		} else if (n < 0.33f) {
+			nextState = States.Idle;
+		} else if (n < 0.66f) {
+			nextState = States.Walking;
+		} else {
+			nextState = States.Looking;
 		}
+
+		fsm.ChangeState(nextState);
 	}
 
 	// Idle
@@ -152,7 +171,7 @@ public class Bot : NetworkBehaviour {
 	void Walking_Update() {
 		debugInfo = agent.remainingDistance.ToString();
 
-		if (agent.remainingDistance < 1f) {
+		if (ReachedDestination()) {
 			anim.animator.SetBool("Walking", false);
 			fsm.ChangeState(States.Deciding);
 		}
@@ -179,8 +198,9 @@ public class Bot : NetworkBehaviour {
 		}
 	}
 
+	// Panic
 	void Panic_Enter() {
-		agent.destination = goals[20].transform.position;
+		ChooseDestination();
 		agent.speed = 6.0f;
 		this.audioSource.pitch = Random.Range (0.8f, 1.2f);
 		anim.animator.SetBool("Running", true);
@@ -190,7 +210,7 @@ public class Bot : NetworkBehaviour {
 
 	void Panic_Update() {
 		debugInfo = agent.remainingDistance.ToString();
-		if (agent.remainingDistance < 1f) {
+		if (ReachedDestination()) {
 			anim.animator.SetBool("Running", false);
 			fsm.ChangeState(States.Deciding);
 		}
@@ -201,36 +221,54 @@ public class Bot : NetworkBehaviour {
 		agent.speed = 1.2f;
 	}
 
+	public void Panic(Vector3 point) {
+		fsm.ChangeState (States.Panic, StateTransition.Overwrite);
+	}
+
+	private void Scream() {
+		this.audioSource.Play();
+	}
+
+	// Death
 	public void Die() {
-		fsm.ChangeState (States.Dead, StateTransition.Overwrite);
+		anim.animator.SetTrigger( "Death");
+		this.GetComponent<CapsuleCollider> ().enabled = false;
+
+		if (fsm != null) {
+			fsm.ChangeState (States.Dead, StateTransition.Overwrite);
+		}
+
+		this.enabled = false;
 	}
 
 	void Dead_Enter() {
-		anim.animator.SetTrigger( "Death");
 		agent.Stop ();
 		agent.enabled = false;
-		this.GetComponent<CapsuleCollider> ().enabled = false;
-		this.enabled = false;
 	}
 
 	void Dead_Update() {
 
 	}
 
-	public void Panic(Vector3 point) {
-//		List<Transform> positions = new List<Transform> ();
-//		foreach (GameObject goal in goals) {
-//			positions.Add(goal.GetComponent<Transform> ());
-//		}
-//		positions.OrderBy (s => Vector3.Distance (s.position, point));
-//		agent.destination = positions.ElementAt(5).position;
-
-
-		
-		fsm.ChangeState (States.Panic, StateTransition.Overwrite);
+	// Leaving
+	void Leaving_Enter() {
+		if (agent.enabled) {
+			ChooseExit();
+			anim.animator.SetBool("Walking", true);
+			agent.Resume();
+		}
 	}
 
-	private void Scream() {
-		this.audioSource.Play();
+	void Leaving_Update() {
+		debugInfo = agent.remainingDistance.ToString();
+
+		if (ReachedDestination()) {
+			RpcLeave();
+		}
+	}
+
+	[ClientRpc]
+	void RpcLeave() {
+		GameObject.Destroy(gameObject);
 	}
 }

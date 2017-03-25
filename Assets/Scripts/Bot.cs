@@ -300,7 +300,7 @@ public class Bot : NetworkBehaviour {
 		agent.speed = 1.2f;
 	}
 
-	public void FireAlarm(Vector3 point) {
+	public void FireAlarm() {
 		fsm.ChangeState (States.FireAlarm, StateTransition.Overwrite);
 	}
 }

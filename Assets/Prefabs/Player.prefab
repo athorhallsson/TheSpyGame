@@ -198,6 +198,7 @@ GameObject:
   - component: {fileID: 95045562985577922}
   - component: {fileID: 114506053191735868}
   - component: {fileID: 136977435979552872}
+  - component: {fileID: 114359124312606980}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -783,6 +784,25 @@ MonoBehaviour:
   impactPrefab: {fileID: 1665836510878110, guid: a737cfdfa6b9747008b442cc54d14b48,
     type: 2}
   hitPrefab: {fileID: 1000787147621776, guid: 2989b8793357a49bc8dc003c1fdf0816, type: 2}
+--- !u!114 &114359124312606980
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1685423373056240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1267208747, guid: dc443db3e92b4983b9738c1131f555cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Target: {fileID: 4333561839942074}
+  m_ChildIndex: 0
+  m_SendInterval: 0.04347826
+  m_SyncRotationAxis: 7
+  m_RotationSyncCompression: 0
+  m_MovementThreshold: 0.1
+  m_InterpolateRotation: 0.5
+  m_InterpolateMovement: 0.5
 --- !u!114 &114361194905952740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -838,7 +858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71f1a58084bf14495bdf91036b5d1c01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnTime: 30
+  playerName: 
   models:
   - {fileID: 1000013953556208, guid: 473b8bdfaa75e8d4f9ebcdf8944faf29, type: 2}
   - {fileID: 1000010520495688, guid: 04cb71165889221459d12a1ab5a83153, type: 2}
@@ -986,7 +1006,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 4
   m_SendInterval: 0.04347826
-  m_SyncRotationAxis: 2
+  m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
   m_MovementTheshold: 0.1
@@ -1023,8 +1043,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 1
-  m_Height: 2
+  m_Radius: 0.4
+  m_Height: 1.6
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!143 &143392625265841470

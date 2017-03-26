@@ -6,11 +6,13 @@ using UnityEngine.Networking;
 public class PlayerShooting : NetworkBehaviour
 {
 	[SerializeField] float shotCooldown;
+	[SerializeField] float raiseCooldown;
 	[SerializeField] ShotEffectsManager shotEffects;
 	[SerializeField] GameObject gun;
 
 	private NetworkAnimator parentPlayerAnim;
 	float elapsedTime;
+	float elapsedTimeRaise;
 	bool canShoot;
 
 	private Player player;
@@ -34,9 +36,11 @@ public class PlayerShooting : NetworkBehaviour
 		}
 
 		elapsedTime += Time.deltaTime;
+		elapsedTimeRaise += Time.deltaTime;
 
-		if (elapsedTime > shotCooldown && Input.GetKeyDown (KeyCode.Q)) {
+		if (elapsedTimeRaise > raiseCooldown && Input.GetKeyDown (KeyCode.Q)) {
 			shooting = !shooting;
+			elapsedTimeRaise = 0f;
 			elapsedTime = 0f;
 			this.parentPlayerAnim.animator.SetBool ("Shooting", shooting);
 			if (shooting) {
@@ -50,6 +54,7 @@ public class PlayerShooting : NetworkBehaviour
 		if (Input.GetButtonDown ("Fire1")) {
 			if (elapsedTime > shotCooldown && shooting) {
 				elapsedTime = 0f;
+				elapsedTimeRaise = 0f;
 				CmdFireShot();
 			}
 		}
@@ -139,7 +144,7 @@ public class PlayerShooting : NetworkBehaviour
 	void RpcHolsterGun() {
 		player.RotateBack ();
 		this.parentPlayerAnim.animator.SetBool("Shooting", false);
-		Invoke ("HideGun", 1f);
+		Invoke ("HideGun", 0.7f);
 	}
 
 	void HideGun() {

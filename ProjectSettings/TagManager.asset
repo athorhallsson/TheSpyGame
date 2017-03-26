@@ -9,6 +9,7 @@ TagManager:
   - GameOverText
   - Exit
   - FireAlarm
+  - Assist
   layers:
   - Default
   - TransparentFX

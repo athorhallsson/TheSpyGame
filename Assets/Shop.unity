@@ -808,7 +808,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 85695248}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.351, y: 0, z: 1.948}
+  m_LocalPosition: {x: 3.3, y: 0, z: 1.676}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1327384276}
@@ -4900,7 +4900,7 @@ GameObject:
   - component: {fileID: 670929572}
   m_Layer: 0
   m_Name: Assist 2
-  m_TagString: Goal
+  m_TagString: Assist
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4912,7 +4912,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 670929571}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.256, y: -0.4309072, z: 0.533}
+  m_LocalPosition: {x: 4.84, y: -0.4309072, z: 0.616}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1327384276}
@@ -12992,7 +12992,7 @@ GameObject:
   - component: {fileID: 1947025162}
   m_Layer: 0
   m_Name: Assist 1
-  m_TagString: Goal
+  m_TagString: Assist
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13004,7 +13004,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1947025161}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.256, y: -0.4309072, z: 3.338}
+  m_LocalPosition: {x: 4.448, y: -0.4309072, z: 3.174}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1327384276}
@@ -13072,7 +13072,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1958544065}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.3510003, y: 0, z: 0.159}
+  m_LocalPosition: {x: 3.024, y: 0, z: 0.159}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1327384276}

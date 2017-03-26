@@ -32,6 +32,8 @@ public class Bot : NetworkBehaviour {
 	public System.String debugInfo;
 	public GameObject debugObject;
 
+	private float assistTime;
+
 	private enum States {
 		Building,
 		Deciding,
@@ -41,7 +43,8 @@ public class Bot : NetworkBehaviour {
 		Dead,
 		Leaving,
 		FireAlarm,
-		Panic
+		Panic,
+		Assist
 	}
 
 	// Main --------------------------------------------------------------------
@@ -167,6 +170,8 @@ public class Bot : NetworkBehaviour {
 
 		if (n < 0.02f) {
 			nextState = States.Leaving;
+		} else if (n < 0.07f) {
+			nextState = States.Assist;
 		} else if (n < 0.33f) {
 			nextState = States.Idle;
 		} else if (n < 0.66f) {
@@ -331,5 +336,28 @@ public class Bot : NetworkBehaviour {
 
 	public void FireAlarm() {
 		fsm.ChangeState (States.FireAlarm, StateTransition.Overwrite);
+	}
+
+
+	// Assist
+	void Assist_Enter() {
+		GameObject[] assistPoints = GameObject.FindGameObjectsWithTag ("Assist");
+		agent.destination = assistPoints [Random.Range (0, assistPoints.Length)].transform.position;
+		agent.Resume ();
+		anim.animator.SetBool("Walking", true);
+		assistTime = 0f;
+	}
+
+	void Assist_Update() {
+		if (ReachedDestination()) {
+			anim.animator.SetBool("Walking", false);
+			assistTime += Time.deltaTime;
+			if (assistTime > 5f) {
+				assistTime = 0f;
+				if (Random.Range (0f, 1f) < 0.33f) {
+					fsm.ChangeState(States.Deciding);
+				}
+			}
+		}
 	}
 }

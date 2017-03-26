@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class FireAlarm : NetworkBehaviour
 {
@@ -10,6 +11,7 @@ public class FireAlarm : NetworkBehaviour
     private Player player;
     private bool ableToPush;
     private float distance = 3f;
+	private Text instructions;
 
 	void Start () {
 		GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
@@ -18,6 +20,8 @@ public class FireAlarm : NetworkBehaviour
 				player = p.GetComponent<Player>();
 			}
 		}
+		instructions = GameObject.FindGameObjectWithTag("InstructionsText").GetComponent<Text>();
+
         ableToPush = false;
 	}
 
@@ -35,7 +39,16 @@ public class FireAlarm : NetworkBehaviour
 				player.PlayFireAlarm ();
             }
         }
+		if (!ableToPush) {
+			instructions.text = "";
+		}
     }
+
+	void LateUpdate() {
+		if (ableToPush) {
+			instructions.text = "Press E to activate the fire alarm";
+		}
+	}
 
     public void playSound() {
         fireAlarm.Play();

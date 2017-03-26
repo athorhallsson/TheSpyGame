@@ -10,6 +10,7 @@ TagManager:
   - Exit
   - FireAlarm
   - Assist
+  - InstructionsText
   layers:
   - Default
   - TransparentFX

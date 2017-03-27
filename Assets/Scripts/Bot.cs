@@ -168,9 +168,9 @@ public class Bot : NetworkBehaviour {
 		float n = Random.Range(0f, 1.0f);
 		States nextState;
 
-		if (n < 0.02f) {
+		if (n < 0.01f) {
 			nextState = States.Leaving;
-		} else if (n < 0.07f) {
+		} else if (n < 0.03f) {
 			nextState = States.Assist;
 		} else if (n < 0.33f) {
 			nextState = States.Idle;

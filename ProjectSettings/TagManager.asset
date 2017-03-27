@@ -11,6 +11,7 @@ TagManager:
   - FireAlarm
   - Assist
   - InstructionsText
+  - GunInstructionsText
   layers:
   - Default
   - TransparentFX

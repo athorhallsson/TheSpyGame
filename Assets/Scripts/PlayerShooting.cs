@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 public class PlayerShooting : NetworkBehaviour
 {
@@ -15,12 +16,14 @@ public class PlayerShooting : NetworkBehaviour
 	float elapsedTimeRaise;
 	bool canShoot;
 
+	private Text instructions;
+
 	private Player player;
 
 	bool shooting = false;
 
 	void Start() {
-		
+		instructions = GameObject.FindGameObjectWithTag("GunInstructionsText").GetComponent<Text>();
 		parentPlayerAnim = GetComponentInParent<NetworkAnimator>();
 		shotEffects.Initialize ();
 		player = GetComponentInParent <Player>();
@@ -52,12 +55,26 @@ public class PlayerShooting : NetworkBehaviour
 		}
 
 		if (Input.GetButtonDown ("Fire1")) {
-			if (elapsedTime > shotCooldown && shooting) {
-				elapsedTime = 0f;
-				elapsedTimeRaise = 0f;
-				CmdFireShot();
+			if (shooting) {
+				if (elapsedTime > shotCooldown && shooting) {
+					elapsedTime = 0f;
+					elapsedTimeRaise = 0f;
+					CmdFireShot();
+				}
+			} else {
+				ShowInstructions();
 			}
+
 		}
+	}
+
+	void ShowInstructions() {
+		instructions.text = "Press Q to draw the gun";
+		Invoke ("HideInstructions", 1.0f);
+	}
+
+	void HideInstructions() {
+		instructions.text = "";
 	}
 
 	[Command]

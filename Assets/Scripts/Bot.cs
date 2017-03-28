@@ -63,6 +63,7 @@ public class Bot : NetworkBehaviour {
 		if (ident.hasAuthority) {
 			fsm = StateMachine<States>.Initialize(this);
 			fsm.ChangeState(States.Building);
+			agent.avoidancePriority = Random.Range (20, 80);
 		} else {
 		}
 	}
@@ -242,8 +243,12 @@ public class Bot : NetworkBehaviour {
 	}
 
 	void Panic_Enter() {
+		if (!agent.enabled) {
+			fsm.ChangeState (States.Dead, StateTransition.Overwrite);
+			return;
+		}
 		FindPanicDestination();
-		agent.speed = 6.0f;
+		agent.speed = 5f;
 		anim.animator.SetBool("Running", true);
 		//Invoke("Scream", Random.Range(0.0f, 2.0f));
 		agent.Resume();
@@ -258,8 +263,10 @@ public class Bot : NetworkBehaviour {
 
 	void Panic_Finally() {
 		anim.animator.SetBool("Running", false);
-		agent.Stop ();
-		agent.speed = 1.2f;
+		if (agent.enabled) {
+			agent.Stop ();
+			agent.speed = 1.2f;
+		}
 	}
 
 	public IEnumerator Panic(Vector3 point) {
@@ -278,15 +285,21 @@ public class Bot : NetworkBehaviour {
 			fsm.ChangeState (States.Dead, StateTransition.Overwrite);
 		}
 
-		this.enabled = false;
+		//this.enabled = false;
 	}
 
 	void Dead_Enter() {
-		agent.Stop ();
-		agent.enabled = false;
+		if (agent.enabled) {
+			agent.Stop ();
+			agent.enabled = false;
+		}
 	}
 
 	void Dead_Update() {
+		fsm.ChangeState (States.Dead, StateTransition.Overwrite);
+	}
+
+	void Dead_Finally() {
 
 	}
 

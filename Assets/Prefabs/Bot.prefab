@@ -220,7 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Target: {fileID: 4735986744222186}
   m_ChildIndex: 0
-  m_SendInterval: 0.041666668
+  m_SendInterval: 0.033333335
   m_SyncRotationAxis: 2
   m_RotationSyncCompression: 0
   m_MovementThreshold: 0.1
@@ -275,7 +275,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_TransformSyncMode: 1
-  m_SendInterval: 0.041666668
+  m_SendInterval: 0.033333335
   m_SyncRotationAxis: 2
   m_RotationSyncCompression: 0
   m_SyncSpin: 0

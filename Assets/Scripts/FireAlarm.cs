@@ -10,7 +10,7 @@ public class FireAlarm : NetworkBehaviour
 
     private Player player;
     private bool ableToPush;
-    private float distance = 3f;
+    private float distance = 1.5f;
 	private Text instructions;
 
 	void Start () {

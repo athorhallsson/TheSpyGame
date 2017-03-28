@@ -146,8 +146,8 @@ public class Bot : NetworkBehaviour {
 		return bestGoal;
 	}
 
-	bool ReachedDestination() {
-		return agent != null && !agent.pathPending && agent.remainingDistance < 1.0f;
+	bool ReachedDestination(float minDistance) {
+		return agent != null && !agent.pathPending && agent.remainingDistance < minDistance;
 	}
 
 	private void Scream() {
@@ -170,7 +170,7 @@ public class Bot : NetworkBehaviour {
 
 		if (n < 0.01f) {
 			nextState = States.Leaving;
-		} else if (n < 0.03f) {
+		} else if (n < 0.02f) {
 			nextState = States.Assist;
 		} else if (n < 0.33f) {
 			nextState = States.Idle;
@@ -204,7 +204,7 @@ public class Bot : NetworkBehaviour {
 	void Walking_Update() {
 		debugInfo = agent.remainingDistance.ToString();
 
-		if (ReachedDestination()) {
+		if (ReachedDestination(1.0f)) {
 			fsm.ChangeState(States.Deciding);
 		}
 	}
@@ -251,7 +251,7 @@ public class Bot : NetworkBehaviour {
 
 	void Panic_Update() {
 		debugInfo = agent.remainingDistance.ToString();
-		if (ReachedDestination()) {
+		if (ReachedDestination(1.0f)) {
 			fsm.ChangeState(States.Deciding);
 		}
 	}
@@ -305,7 +305,7 @@ public class Bot : NetworkBehaviour {
 	void Leaving_Update() {
 		debugInfo = agent.remainingDistance.ToString();
 
-		if (ReachedDestination()) {
+		if (ReachedDestination(1.0f)) {
 			RpcLeave();
 		}
 	}
@@ -323,7 +323,7 @@ public class Bot : NetworkBehaviour {
 	void FireAlarm_Update() {
 		debugInfo = agent.remainingDistance.ToString();
 
-		if (ReachedDestination()) {
+		if (ReachedDestination(3.0f)) {
 			fsm.ChangeState(States.Deciding);
 		}
 	}
@@ -349,7 +349,7 @@ public class Bot : NetworkBehaviour {
 	}
 
 	void Assist_Update() {
-		if (ReachedDestination()) {
+		if (ReachedDestination(1.0f)) {
 			anim.animator.SetBool("Walking", false);
 			assistTime += Time.deltaTime;
 			if (assistTime > 5f) {

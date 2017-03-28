@@ -61,6 +61,7 @@ public class Player : NetworkBehaviour
 		NetworkTransformChild ntc = gameObject.AddComponent<NetworkTransformChild>();
 		ntc.target = model.transform;
 		this.gameObject.SetActive(true);
+		model.transform.localEulerAngles = new Vector3 (0, 0, 0);
 	}
 
 	void OnGUI(){

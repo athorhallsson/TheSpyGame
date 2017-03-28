@@ -199,7 +199,7 @@ public class Player : NetworkBehaviour
 	[Command]
 	public void CmdPlayFireAlarm() {
 		RpcStartSound();
-		MakeBotsFirePanic ();
+		MakeBotsFirePanic();
 	}
 
 	void MakeBotsFirePanic() {

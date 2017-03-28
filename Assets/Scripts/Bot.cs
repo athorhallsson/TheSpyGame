@@ -262,7 +262,9 @@ public class Bot : NetworkBehaviour {
 		agent.speed = 1.2f;
 	}
 
-	public void Panic(Vector3 point) {
+	public IEnumerator Panic(Vector3 point) {
+		yield return new WaitForSeconds(Random.Range(0.2f, 0.8f));
+
 		gunshotPoint = point;
 		fsm.ChangeState (States.Panic, StateTransition.Overwrite);
 	}
@@ -334,8 +336,12 @@ public class Bot : NetworkBehaviour {
 		agent.speed = 1.2f;
 	}
 
-	public void FireAlarm() {
+	private void ActuallyFireAlarm() {
 		fsm.ChangeState (States.FireAlarm, StateTransition.Overwrite);
+	}
+
+	public void FireAlarm() {
+		Invoke("ActuallyFireAlarm", Random.Range(0.2f, 0.8f));
 	}
 
 

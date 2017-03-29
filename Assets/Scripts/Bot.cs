@@ -191,12 +191,16 @@ public class Bot : NetworkBehaviour {
 			nextState = States.Leaving;
 		} else if (n < 0.02f) {
 			nextState = States.Assist;
-		} else if (n < 0.33f) {
+		} else if (n < 0.10f) {
 			nextState = States.Idle;
 		} else if (n < 0.66f) {
 			nextState = States.Walking;
 		} else {
 			nextState = States.Looking;
+		}
+
+		if (!agent.enabled) {
+			nextState = States.Dead;
 		}
 
 		fsm.ChangeState(nextState);
@@ -221,16 +225,20 @@ public class Bot : NetworkBehaviour {
 	}
 
 	void Walking_Update() {
-		debugInfo = agent.remainingDistance.ToString();
+		if (agent.enabled) {
+			debugInfo = agent.remainingDistance.ToString();
 
-		if (ReachedDestination(1.0f)) {
-			fsm.ChangeState(States.Deciding);
+			if (ReachedDestination(1.0f)) {
+				fsm.ChangeState(States.Deciding);
+			}
 		}
 	}
 
 	void Walking_Finally() {
 		anim.animator.SetBool("Walking", false);
-		agent.Stop ();
+		if (agent.enabled) {
+			agent.Stop ();
+		}
 	}
 
 	// Looking
@@ -239,14 +247,16 @@ public class Bot : NetworkBehaviour {
 	}
 
 	void Looking_Update() {
-		debugInfo = rotationRemaining.ToString();
+		if (agent.enabled) {
+			debugInfo = rotationRemaining.ToString();
 
-		if (rotationRemaining >= 0f) {
-			float amount = rotationSpeed * Time.deltaTime;
-			this.transform.Rotate(Vector3.up * rotationDirection * amount);
-			rotationRemaining -= amount;
-		} else {
-			fsm.ChangeState(States.Deciding);
+			if (rotationRemaining >= 0f) {
+				float amount = rotationSpeed * Time.deltaTime;
+				this.transform.Rotate(Vector3.up * rotationDirection * amount);
+				rotationRemaining -= amount;
+			} else {
+				fsm.ChangeState(States.Deciding);
+			}
 		}
 	}
 
@@ -263,19 +273,21 @@ public class Bot : NetworkBehaviour {
 	void Panic_Enter() {
 		if (!agent.enabled) {
 			fsm.ChangeState (States.Dead, StateTransition.Overwrite);
-			return;
+		} else {
+			FindPanicDestination();
+			agent.speed = 5f;
+			anim.animator.SetBool("Running", true);
+			Invoke("Scream", Random.Range(0.0f, 2.0f));
+			agent.Resume();
 		}
-		FindPanicDestination();
-		agent.speed = 5f;
-		anim.animator.SetBool("Running", true);
-		//Invoke("Scream", Random.Range(0.0f, 2.0f));
-		agent.Resume();
 	}
 
 	void Panic_Update() {
-		debugInfo = agent.remainingDistance.ToString();
-		if (ReachedDestination(1.0f)) {
-			fsm.ChangeState(States.Deciding);
+		if (agent.enabled) {
+			debugInfo = agent.remainingDistance.ToString();
+			if (ReachedDestination(1.0f)) {
+				fsm.ChangeState(States.Deciding);
+			}
 		}
 	}
 
@@ -335,10 +347,12 @@ public class Bot : NetworkBehaviour {
 	}
 
 	void Leaving_Update() {
-		debugInfo = agent.remainingDistance.ToString();
+		if (agent.enabled) {
+			debugInfo = agent.remainingDistance.ToString();
 
-		if (ReachedDestination(1.0f)) {
-			RpcLeave();
+			if (ReachedDestination(1.0f)) {
+				RpcLeave();
+			}
 		}
 	}
 
@@ -349,16 +363,18 @@ public class Bot : NetworkBehaviour {
 
 			agent.speed = 3.0f;
 			anim.animator.SetBool("Running", true);
-			//Invoke("Scream", Random.Range(0.0f, 2.0f));
+			Invoke("Scream", Random.Range(0.0f, 2.0f));
 			agent.Resume();
 		}
 	}
 
 	void FireAlarm_Update() {
-		debugInfo = agent.remainingDistance.ToString();
+		if (agent.enabled) {
+			debugInfo = agent.remainingDistance.ToString();
 
-		if (ReachedDestination(3.0f)) {
-			fsm.ChangeState(States.Deciding);
+			if (ReachedDestination(3.0f)) {
+				fsm.ChangeState(States.Deciding);
+			}
 		}
 	}
 

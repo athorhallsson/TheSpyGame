@@ -178,7 +178,7 @@ public class Bot : NetworkBehaviour {
 	// Building
 	void Building_Update() {
 		if (modelReady) {
-			fsm.ChangeState(States.Deciding);
+			fsm.ChangeState(States.Idle);
 		}
 	}
 
@@ -210,7 +210,7 @@ public class Bot : NetworkBehaviour {
 	IEnumerator Idle_Enter() {
 		anim.animator.SetBool("Walking", false);
 
-		yield return new WaitForSeconds(Random.Range(1.0f, 3.0f));
+		yield return new WaitForSeconds(Random.Range(1.0f, 5.0f));
 
 		fsm.ChangeState(States.Deciding);
 	}

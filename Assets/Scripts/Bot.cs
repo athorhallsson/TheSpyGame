@@ -15,12 +15,14 @@ public class Bot : NetworkBehaviour {
 
 	private Vector3 gunshotPoint;
 	private AudioSource audioSource;
-	private GameObject[] goals;
+	private GameObject[] goalsUp;
+	private GameObject[] goalsDown;
 	private GameObject[] exits;
 	private GameObject fireAlarmExit;
 	private NavMeshAgent agent;
 	private NetworkAnimator anim;
 	private NetworkIdentity ident;
+	private bool isUpstairs;
 
 	// State Machine Data
 	private StateMachine<States> fsm;
@@ -60,6 +62,8 @@ public class Bot : NetworkBehaviour {
 	}
 
 	void Start() {
+		isUpstairs = (Random.Range(0.0f, 1.0f) < 0.3f);
+
 		if (ident.hasAuthority) {
 			fsm = StateMachine<States>.Initialize(this);
 			fsm.ChangeState(States.Building);
@@ -99,7 +103,8 @@ public class Bot : NetworkBehaviour {
 
 	// Navigation -------------------------------------------------------------
 	private void FindDestinations() {
-		goals = GameObject.FindGameObjectsWithTag("Goal");
+		goalsUp = GameObject.FindGameObjectsWithTag("GoalUp");
+		goalsDown = GameObject.FindGameObjectsWithTag("GoalDown");
 		exits = GameObject.FindGameObjectsWithTag("Exit");
 		fireAlarmExit = GameObject.Find("Emergency Exit");
 	}
@@ -117,8 +122,17 @@ public class Bot : NetworkBehaviour {
 		}
 	}
 
+	private GameObject[] GoalsOnFloor() {
+		return isUpstairs ? goalsUp : goalsDown;
+	}
+
 	void ChooseDestination() {
-		if (goals.Length > 0 && agent != null) {
+		if (goalsUp.Length > 0 && agent != null) {
+			if (Random.Range(0.0f, 1.0f) < 0.05f) {
+				isUpstairs = !isUpstairs;
+			}
+
+			GameObject[] goals = GoalsOnFloor();
 			GameObject goal = goals[Random.Range (0, goals.Length)];
 			SetDestination(goal);
 		}
@@ -134,6 +148,7 @@ public class Bot : NetworkBehaviour {
 		float bestDistance = 1000000000.0f;
 		GameObject bestGoal = null;
 
+		GameObject[] goals = GoalsOnFloor();
 		if (goals.Length > 0 && agent != null) {
 			foreach (GameObject goal in goals) {
 				float distance = (goal.transform.position - target).magnitude;
@@ -299,11 +314,10 @@ public class Bot : NetworkBehaviour {
 	}
 
 	void Dead_Update() {
-		fsm.ChangeState (States.Dead, StateTransition.Overwrite);
 	}
 
 	void Dead_Finally() {
-
+		fsm.ChangeState (States.Dead, StateTransition.Overwrite);
 	}
 
 	// Leaving

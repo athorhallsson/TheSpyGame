@@ -87,19 +87,16 @@ public class PlayerShooting : NetworkBehaviour
 
 	[Command]
 	void CmdDrawGun() {
-		this.parentPlayerAnim.animator.SetBool ("Shooting", true);
 		RpcDrawGun();
 	}
 
 	[Command]
 	void CmdHolsterGun() {
-		this.parentPlayerAnim.animator.SetBool ("Shooting", false);
 		RpcHolsterGun();
 	}
 
 	[Command]
 	void CmdFireShot() {
-		this.parentPlayerAnim.animator.SetTrigger("Shoot");
 		FireGun();
 	}
 
@@ -162,6 +159,9 @@ public class PlayerShooting : NetworkBehaviour
 
 	[ClientRpc]
 	void RpcDrawGun() {
+		if (isLocalPlayer) {
+			this.parentPlayerAnim.animator.SetBool ("Shooting", true);
+		}
 		player.RotateAndAim ();
 		UpdateGunParent();
 		gun.SetActive(true);
@@ -169,6 +169,9 @@ public class PlayerShooting : NetworkBehaviour
 
 	[ClientRpc]
 	void RpcHolsterGun() {
+		if (isLocalPlayer) {
+			this.parentPlayerAnim.animator.SetBool ("Shooting", false);
+		}
 		player.RotateBack ();
 		Invoke ("HideGun", raiseCooldown);
 	}
@@ -179,6 +182,10 @@ public class PlayerShooting : NetworkBehaviour
 
 	[ClientRpc]
 	void RpcProcessShotEffects(Vector3 point, bool hit) {
+		if (isLocalPlayer) {
+			this.parentPlayerAnim.animator.SetTrigger("Shoot");
+		}
+
 		shotEffects.PlayShotEffects ();
 
 		if (hit) {
@@ -190,6 +197,10 @@ public class PlayerShooting : NetworkBehaviour
 
 	[ClientRpc]
 	void RpcProcessMissEffects() {
+		if (isLocalPlayer) {
+			this.parentPlayerAnim.animator.SetTrigger("Shoot");
+		}
+
 		shotEffects.PlayShotEffects ();
 	}
 }

@@ -277,7 +277,9 @@ public class Bot : NetworkBehaviour {
 			FindPanicDestination();
 			agent.speed = 5f;
 			anim.animator.SetBool("Running", true);
-			Invoke("Scream", Random.Range(0.0f, 2.0f));
+			if (Random.Range (0f, 1f) < 0.5f) {
+				Invoke("Scream", Random.Range(0.0f, 2.0f));
+			}
 			agent.Resume();
 		}
 	}

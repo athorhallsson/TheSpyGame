@@ -12,12 +12,12 @@ public class PlayerShooting : NetworkBehaviour
 	[SerializeField] GameObject gun;
 
 	private NetworkAnimator parentPlayerAnim;
-	bool canShoot;
 
 	private Text instructions;
 
 	private Player player;
 
+	bool canShoot = false;
 	bool gunRaised = false;
 
 	private float shotCooldown;

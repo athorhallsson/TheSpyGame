@@ -1025,8 +1025,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bff7567b12d6b4e25a8f602da3c813aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shotCooldown: 1.5
-  raiseCooldown: 0.7
+  shotReloadTime: 1.5
+  gunRaiseTime: 0.5
   shotEffects: {fileID: 114077027453414016}
   gun: {fileID: 1247329119466976}
 --- !u!124 &124456846795612050

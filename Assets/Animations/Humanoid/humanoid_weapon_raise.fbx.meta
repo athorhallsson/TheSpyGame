@@ -211,7 +211,7 @@ ModelImporter:
     - serializedVersion: 16
       name: WeaponRaise
       takeName: Unity_Weapon_Raise_tk03
-      firstFrame: 10
+      firstFrame: 20
       lastFrame: 58
       wrapMode: 0
       orientationOffsetY: 0

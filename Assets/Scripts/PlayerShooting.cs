@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class PlayerShooting : NetworkBehaviour
 {
-	[SerializeField] float shotCooldown;
-	[SerializeField] float raiseCooldown;
+	[SerializeField] float shotReloadTime;
+	[SerializeField] float gunRaiseTime;
 	[SerializeField] ShotEffectsManager shotEffects;
 	[SerializeField] GameObject gun;
 
@@ -20,7 +20,10 @@ public class PlayerShooting : NetworkBehaviour
 
 	private Player player;
 
-	bool shooting = false;
+	bool gunRaised = false;
+
+	private float shotCooldown;
+	private float raiseCooldown;
 
 	void Start() {
 		instructions = GameObject.FindGameObjectWithTag("GunInstructionsText").GetComponent<Text>();
@@ -33,32 +36,39 @@ public class PlayerShooting : NetworkBehaviour
 		}
 	}
 
+	void SetShotCooldown() {
+	}
+
 	void Update() {
 		if (!canShoot) {
 			return;
 		}
 
-		elapsedTime += Time.deltaTime;
-		elapsedTimeRaise += Time.deltaTime;
+		shotCooldown -= Time.deltaTime;
+		raiseCooldown -= Time.deltaTime;
 
-		if (elapsedTimeRaise > raiseCooldown && Input.GetKeyDown (KeyCode.Q)) {
-			shooting = !shooting;
-			elapsedTimeRaise = 0f;
-			elapsedTime = 0f;
-			this.parentPlayerAnim.animator.SetBool ("Shooting", shooting);
-			if (shooting) {
-				CmdDrawGun();
-			} else {
-				CmdHolsterGun();
+		if (Input.GetKeyDown(KeyCode.Q)) {
+			if (raiseCooldown < 0.0f) {
+				raiseCooldown = gunRaiseTime;
+				shotCooldown = gunRaiseTime;
+
+				if (!gunRaised) {
+					gunRaised = true;
+					this.parentPlayerAnim.animator.SetBool ("Shooting", true);
+					CmdDrawGun();
+				} else {
+					gunRaised = false;
+					this.parentPlayerAnim.animator.SetBool ("Shooting", false);
+					CmdHolsterGun();
+				}
 			}
-
 		}
 
 		if (Input.GetButtonDown ("Fire1")) {
-			if (shooting) {
-				if (elapsedTime > shotCooldown && shooting) {
-					elapsedTime = 0f;
-					elapsedTimeRaise = 0f;
+			if (gunRaised) {
+				if (shotCooldown < 0.0f) {
+					raiseCooldown = shotReloadTime;
+					shotCooldown = shotReloadTime;
 					CmdFireShot();
 				}
 			} else {
@@ -86,7 +96,6 @@ public class PlayerShooting : NetworkBehaviour
 	void CmdHolsterGun() {
 		RpcHolsterGun();
 	}
-
 
 	private void FireGun() {
 		Transform camTransform = this.transform.FindChild("FirstPersonCharacter");
@@ -161,7 +170,7 @@ public class PlayerShooting : NetworkBehaviour
 	void RpcHolsterGun() {
 		player.RotateBack ();
 		this.parentPlayerAnim.animator.SetBool("Shooting", false);
-		Invoke ("HideGun", 0.7f);
+		Invoke ("HideGun", raiseCooldown);
 	}
 
 	void HideGun() {

@@ -300,10 +300,10 @@ public class Bot : NetworkBehaviour {
 	}
 
 	public IEnumerator Panic(Vector3 point) {
-		if (agent.enabled) {
+		if (agent != null && agent.enabled) {
 			yield return new WaitForSeconds(Random.Range(0.2f, 0.8f));
 
-			if (agent.enabled) {
+			if (agent != null && agent.enabled) {
 				gunshotPoint = point;
 				fsm.ChangeState (States.Panic, StateTransition.Overwrite);
 			}

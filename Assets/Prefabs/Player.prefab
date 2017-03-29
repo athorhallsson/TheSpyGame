@@ -799,9 +799,9 @@ MonoBehaviour:
   m_SendInterval: 0.033333335
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
-  m_MovementThreshold: 0.1
-  m_InterpolateRotation: 0.5
-  m_InterpolateMovement: 0.5
+  m_MovementThreshold: 0.01
+  m_InterpolateRotation: 1
+  m_InterpolateMovement: 0.1
 --- !u!114 &114361194905952740
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1010,10 +1010,10 @@ MonoBehaviour:
   m_SyncRotationAxis: 7
   m_RotationSyncCompression: 0
   m_SyncSpin: 0
-  m_MovementTheshold: 0.1
+  m_MovementTheshold: 0.01
   m_SnapThreshold: 1
   m_InterpolateRotation: 10
-  m_InterpolateMovement: 1
+  m_InterpolateMovement: 0.1
 --- !u!114 &114873297257185780
 MonoBehaviour:
   m_ObjectHideFlags: 1

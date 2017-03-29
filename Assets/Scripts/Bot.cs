@@ -148,7 +148,10 @@ public class Bot : NetworkBehaviour {
 	}
 
 	bool ReachedDestination(float minDistance) {
-		return agent != null && !agent.pathPending && agent.remainingDistance < minDistance;
+		if (agent.enabled) {
+			return agent != null && !agent.pathPending && agent.remainingDistance < minDistance;
+		}
+		return false;
 	}
 
 	private void Scream() {
@@ -327,12 +330,14 @@ public class Bot : NetworkBehaviour {
 
 	// Fire Alarm
 	void FireAlarm_Enter() {
-		SetDestination(fireAlarmExit);
+		if (agent.enabled) {
+			SetDestination(fireAlarmExit);
 
-		agent.speed = 3.0f;
-		anim.animator.SetBool("Running", true);
-		//Invoke("Scream", Random.Range(0.0f, 2.0f));
-		agent.Resume();
+			agent.speed = 3.0f;
+			anim.animator.SetBool("Running", true);
+			//Invoke("Scream", Random.Range(0.0f, 2.0f));
+			agent.Resume();
+		}
 	}
 
 	void FireAlarm_Update() {
@@ -345,8 +350,10 @@ public class Bot : NetworkBehaviour {
 
 	void FireAlarm_Finally() {
 		anim.animator.SetBool("Running", false);
-		agent.Stop ();
-		agent.speed = 1.2f;
+		if (agent.enabled) {
+			agent.Stop ();
+			agent.speed = 1.2f;
+		}
 	}
 
 	private void ActuallyFireAlarm() {
@@ -360,11 +367,13 @@ public class Bot : NetworkBehaviour {
 
 	// Assist
 	void Assist_Enter() {
-		GameObject[] assistPoints = GameObject.FindGameObjectsWithTag ("Assist");
-		agent.destination = assistPoints [Random.Range (0, assistPoints.Length)].transform.position;
-		agent.Resume ();
-		anim.animator.SetBool("Walking", true);
-		assistTime = 0f;
+		if (agent.enabled) {
+			GameObject[] assistPoints = GameObject.FindGameObjectsWithTag ("Assist");
+			agent.destination = assistPoints [Random.Range (0, assistPoints.Length)].transform.position;
+			agent.Resume ();
+			anim.animator.SetBool("Walking", true);
+			assistTime = 0f;
+		}
 	}
 
 	void Assist_Update() {

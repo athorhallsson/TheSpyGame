@@ -296,11 +296,10 @@ public class Bot : NetworkBehaviour {
 	}
 
 	void Dead_Update() {
-		fsm.ChangeState (States.Dead, StateTransition.Overwrite);
 	}
 
 	void Dead_Finally() {
-
+		fsm.ChangeState (States.Dead, StateTransition.Overwrite);
 	}
 
 	// Leaving

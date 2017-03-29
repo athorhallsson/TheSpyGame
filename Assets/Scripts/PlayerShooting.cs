@@ -12,8 +12,6 @@ public class PlayerShooting : NetworkBehaviour
 	[SerializeField] GameObject gun;
 
 	private NetworkAnimator parentPlayerAnim;
-	float elapsedTime;
-	float elapsedTimeRaise;
 	bool canShoot;
 
 	private Text instructions;
@@ -30,7 +28,6 @@ public class PlayerShooting : NetworkBehaviour
 		parentPlayerAnim = GetComponentInParent<NetworkAnimator>();
 		shotEffects.Initialize ();
 		player = GetComponentInParent <Player>();
-		elapsedTime = shotCooldown;
 		if (isLocalPlayer) {
 			canShoot = true;
 		}

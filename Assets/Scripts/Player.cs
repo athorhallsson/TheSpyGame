@@ -57,10 +57,8 @@ public class Player : NetworkBehaviour
 			//foreach(Transform child in model.transform)
 				//child.gameObject.layer = LayerMask.NameToLayer ("Invisible");
 		//}
-		this.gameObject.SetActive(false);
-		NetworkTransformChild ntc = gameObject.AddComponent<NetworkTransformChild>();
+		NetworkTransformChild ntc = this.GetComponent<NetworkTransformChild>();
 		ntc.target = model.transform;
-		this.gameObject.SetActive(true);
 		model.transform.localEulerAngles = new Vector3 (0, 0, 0);
 	}
 

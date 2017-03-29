@@ -26,21 +26,23 @@ public class FireAlarm : NetworkBehaviour
 	}
 
 	void Update () {
-        if (GetComponent<Renderer>().isVisible) {
-			float dist = Vector3.Distance(player.transform.position, this.transform.position);
-			ableToPush = dist < distance;
-        }
-        else {
-            ableToPush = false;
-        }
-        if (Input.GetKeyDown(KeyCode.E)) {
-            //Play fire alarm
-            if (ableToPush && !fireAlarm.isPlaying) {
-				player.PlayFireAlarm ();
-            }
-        }
-		if (!ableToPush) {
-			instructions.text = "";
+		if (player != null) {
+			if (GetComponent<Renderer>().isVisible) {
+				float dist = Vector3.Distance(player.transform.position, this.transform.position);
+				ableToPush = dist < distance;
+			}
+			else {
+				ableToPush = false;
+			}
+			if (Input.GetKeyDown(KeyCode.E)) {
+				//Play fire alarm
+				if (ableToPush && !fireAlarm.isPlaying) {
+					player.PlayFireAlarm ();
+				}
+			}
+			if (!ableToPush) {
+				instructions.text = "";
+			}
 		}
     }
 

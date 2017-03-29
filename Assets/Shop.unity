@@ -364,7 +364,7 @@ GameObject:
   - component: {fileID: 24991388}
   m_Layer: 0
   m_Name: Stairway
-  m_TagString: Goal
+  m_TagString: GoalUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -376,11 +376,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 24991387}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.24, y: 2.219, z: -6.575}
+  m_LocalPosition: {x: -2.24, y: 2.219, z: -6.574999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 18
+  m_Father: {fileID: 1200059953}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &28997484
 Prefab:
@@ -758,7 +758,7 @@ GameObject:
   - component: {fileID: 74688197}
   m_Layer: 0
   m_Name: Balcony View 4
-  m_TagString: Goal
+  m_TagString: GoalUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -770,11 +770,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 74688196}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 4.59, z: 7.49}
+  m_LocalPosition: {x: -0.059999943, y: 4.59, z: 7.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 30
+  m_Father: {fileID: 1200059953}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &81720524
 Prefab:
@@ -836,7 +836,7 @@ GameObject:
   - component: {fileID: 85695249}
   m_Layer: 0
   m_Name: Counter 1
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -847,12 +847,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 85695248}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.3, y: 0, z: 1.676}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.2999997, y: 0, z: 1.6759996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 7
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 39
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &91766345
 GameObject:
@@ -1030,7 +1030,7 @@ GameObject:
   - component: {fileID: 103656842}
   m_Layer: 0
   m_Name: Open 6 (3)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1045,8 +1045,8 @@ Transform:
   m_LocalPosition: {x: -6, y: 0, z: 21.351}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 40
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &113067350
 GameObject:
@@ -1146,7 +1146,7 @@ GameObject:
   - component: {fileID: 129177265}
   m_Layer: 0
   m_Name: Counter 1 (6)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1158,11 +1158,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 129177264}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.68, y: 0, z: -5.846}
+  m_LocalPosition: {x: 2.6799998, y: 0, z: -5.8460007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 54
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &130363816
 Prefab:
@@ -1441,7 +1441,7 @@ GameObject:
   - component: {fileID: 165781905}
   m_Layer: 0
   m_Name: Balcony B
-  m_TagString: Goal
+  m_TagString: GoalUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1456,8 +1456,8 @@ Transform:
   m_LocalPosition: {x: -4.35, y: 4.59, z: 6.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 10
+  m_Father: {fileID: 1200059953}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &175885985
 Prefab:
@@ -1511,7 +1511,7 @@ GameObject:
   - component: {fileID: 178986445}
   m_Layer: 0
   m_Name: Window
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1526,8 +1526,8 @@ Transform:
   m_LocalPosition: {x: 4.46, y: -0.4309072, z: 22.14}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 11
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 41
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &180411812
 Prefab:
@@ -1841,6 +1841,80 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 446744, guid: 0b6b08ca5785a45a19c42cc956a4926c, type: 2}
   m_PrefabInternal: {fileID: 207558241}
+--- !u!1 &211237092
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 211237093}
+  m_Layer: 0
+  m_Name: Downstairs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &211237093
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 211237092}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1135294350}
+  - {fileID: 1743550303}
+  - {fileID: 2029385831}
+  - {fileID: 1722213631}
+  - {fileID: 1566521234}
+  - {fileID: 129177265}
+  - {fileID: 341923218}
+  - {fileID: 479521503}
+  - {fileID: 503875537}
+  - {fileID: 811749336}
+  - {fileID: 348443210}
+  - {fileID: 103656842}
+  - {fileID: 343549180}
+  - {fileID: 1982485772}
+  - {fileID: 1243286530}
+  - {fileID: 821319220}
+  - {fileID: 777620857}
+  - {fileID: 333839637}
+  - {fileID: 228520310}
+  - {fileID: 2048693758}
+  - {fileID: 1781251590}
+  - {fileID: 1895313633}
+  - {fileID: 1030251858}
+  - {fileID: 289532201}
+  - {fileID: 415256884}
+  - {fileID: 1163990932}
+  - {fileID: 268577043}
+  - {fileID: 1018386943}
+  - {fileID: 451522059}
+  - {fileID: 1480383206}
+  - {fileID: 1947025162}
+  - {fileID: 670929572}
+  - {fileID: 397327686}
+  - {fileID: 1386164436}
+  - {fileID: 646653047}
+  - {fileID: 624537105}
+  - {fileID: 1928841147}
+  - {fileID: 1277351722}
+  - {fileID: 1363824511}
+  - {fileID: 85695249}
+  - {fileID: 1958544066}
+  - {fileID: 178986445}
+  - {fileID: 722202803}
+  - {fileID: 1461094221}
+  - {fileID: 476614795}
+  - {fileID: 2001394039}
+  m_Father: {fileID: 1327384276}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &226267044 stripped
 Transform:
   m_PrefabParentObject: {fileID: 433516, guid: fbfeffe2f7d334b23adc4023eea149d9, type: 2}
@@ -1963,7 +2037,7 @@ GameObject:
   - component: {fileID: 228520310}
   m_Layer: 0
   m_Name: Open 6 (10)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1978,8 +2052,8 @@ Transform:
   m_LocalPosition: {x: -3.043, y: 0, z: 8.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 47
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &233354109
 GameObject:
@@ -2507,7 +2581,7 @@ GameObject:
   - component: {fileID: 268577043}
   m_Layer: 0
   m_Name: Corner Stairs
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2522,8 +2596,8 @@ Transform:
   m_LocalPosition: {x: -7.039, y: 0, z: -4.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 19
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &285757653
 Prefab:
@@ -2577,7 +2651,7 @@ GameObject:
   - component: {fileID: 289532201}
   m_Layer: 0
   m_Name: Open 4
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2592,8 +2666,8 @@ Transform:
   m_LocalPosition: {x: 5.3, y: 0, z: 15.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 35
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &306578575
 Prefab:
@@ -2976,7 +3050,7 @@ GameObject:
   - component: {fileID: 333839637}
   m_Layer: 0
   m_Name: Open 6 (9)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2991,8 +3065,8 @@ Transform:
   m_LocalPosition: {x: -6.26, y: 0, z: 8.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 46
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &339331748
 GameObject:
@@ -3094,7 +3168,7 @@ GameObject:
   - component: {fileID: 341923218}
   m_Layer: 0
   m_Name: Counter 1 (7)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3109,8 +3183,8 @@ Transform:
   m_LocalPosition: {x: -8.95, y: 0, z: -4.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 55
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &343549179
 GameObject:
@@ -3122,7 +3196,7 @@ GameObject:
   - component: {fileID: 343549180}
   m_Layer: 0
   m_Name: Open 6 (4)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3137,8 +3211,8 @@ Transform:
   m_LocalPosition: {x: -7.76, y: 0, z: 22.583}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 41
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &348443209
 GameObject:
@@ -3150,7 +3224,7 @@ GameObject:
   - component: {fileID: 348443210}
   m_Layer: 0
   m_Name: Open 6 (2)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3165,8 +3239,8 @@ Transform:
   m_LocalPosition: {x: -1.636, y: 0, z: 22.409}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 39
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &350236609
 Prefab:
@@ -3220,7 +3294,7 @@ GameObject:
   - component: {fileID: 350559339}
   m_Layer: 0
   m_Name: Balcony View 3
-  m_TagString: Goal
+  m_TagString: GoalUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3235,8 +3309,8 @@ Transform:
   m_LocalPosition: {x: -2.47, y: 4.59, z: 7.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 29
+  m_Father: {fileID: 1200059953}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &354876167
 Prefab:
@@ -3738,7 +3812,7 @@ GameObject:
   - component: {fileID: 397327686}
   m_Layer: 0
   m_Name: Table A
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3750,11 +3824,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 397327685}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.56, y: -0.4309072, z: 11.096999}
+  m_LocalPosition: {x: 0.55999994, y: -0.4309072, z: 11.096999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 0
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 32
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &408186101
 Prefab:
@@ -3828,7 +3902,7 @@ GameObject:
   - component: {fileID: 415256884}
   m_Layer: 0
   m_Name: Open 5
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3843,8 +3917,8 @@ Transform:
   m_LocalPosition: {x: 1.79, y: 0, z: 16.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 36
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &415503572
 Prefab:
@@ -4416,7 +4490,7 @@ GameObject:
   - component: {fileID: 451522059}
   m_Layer: 0
   m_Name: Shelf 1
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4428,11 +4502,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 451522058}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.395, y: -0.4309072, z: 2.682}
+  m_LocalPosition: {x: -7.395, y: -0.4309072, z: 2.6820002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 21
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &457553611 stripped
 Transform:
@@ -4634,7 +4708,7 @@ GameObject:
   - component: {fileID: 476614795}
   m_Layer: 0
   m_Name: Speaker B
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4649,8 +4723,8 @@ Transform:
   m_LocalPosition: {x: -4.21, y: 0, z: 11.959}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 14
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 44
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &479521502
 GameObject:
@@ -4662,7 +4736,7 @@ GameObject:
   - component: {fileID: 479521503}
   m_Layer: 0
   m_Name: Counter 1 (8)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4674,11 +4748,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 479521502}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.95, y: 0, z: -0.289}
+  m_LocalPosition: {x: -8.95, y: 0, z: -0.28899956}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 56
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &498349330
 GameObject:
@@ -4828,7 +4902,7 @@ GameObject:
   - component: {fileID: 503875537}
   m_Layer: 0
   m_Name: Counter 1 (9)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4843,8 +4917,8 @@ Transform:
   m_LocalPosition: {x: -8.95, y: 0, z: 8.258}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 57
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &504713438
 Prefab:
@@ -5633,7 +5707,7 @@ GameObject:
   - component: {fileID: 624537105}
   m_Layer: 0
   m_Name: Table D
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5648,8 +5722,8 @@ Transform:
   m_LocalPosition: {x: -4.16, y: -0.4309072, z: 11.096999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 3
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &627715913 stripped
 Transform:
@@ -5773,7 +5847,7 @@ GameObject:
   - component: {fileID: 646653047}
   m_Layer: 0
   m_Name: Table C
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5788,8 +5862,8 @@ Transform:
   m_LocalPosition: {x: -2.18, y: -0.4309072, z: 8.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 2
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 34
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &647053981 stripped
 Transform:
@@ -5957,11 +6031,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 670929571}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.84, y: -0.4309072, z: 0.616}
+  m_LocalPosition: {x: 4.84, y: -0.4309072, z: 0.6160002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 24
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 31
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &679694305 stripped
 Transform:
@@ -5977,7 +6051,7 @@ GameObject:
   - component: {fileID: 684795262}
   m_Layer: 0
   m_Name: Balcony A
-  m_TagString: Goal
+  m_TagString: GoalUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5988,12 +6062,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 684795261}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 4.59, z: 6.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 9
+  m_Father: {fileID: 1200059953}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &687684704
 Prefab:
@@ -6113,7 +6187,7 @@ GameObject:
   - component: {fileID: 722202803}
   m_Layer: 0
   m_Name: Window B
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6128,8 +6202,8 @@ Transform:
   m_LocalPosition: {x: -1.6, y: -0.4309072, z: 24.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 12
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 42
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &727751478
 Prefab:
@@ -6527,7 +6601,7 @@ GameObject:
   - component: {fileID: 777620857}
   m_Layer: 0
   m_Name: Open 6 (8)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6542,8 +6616,8 @@ Transform:
   m_LocalPosition: {x: -11.280001, y: 0, z: 8.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 45
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &779234768
 Prefab:
@@ -6731,7 +6805,7 @@ GameObject:
   - component: {fileID: 811749336}
   m_Layer: 0
   m_Name: Open 6 (1)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6746,8 +6820,8 @@ Transform:
   m_LocalPosition: {x: 1.6740003, y: 0, z: 22.409}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 38
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &821319219
 GameObject:
@@ -6759,7 +6833,7 @@ GameObject:
   - component: {fileID: 821319220}
   m_Layer: 0
   m_Name: Open 6 (7)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6774,8 +6848,8 @@ Transform:
   m_LocalPosition: {x: -11.280001, y: 0, z: 13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 44
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &822732949
 GameObject:
@@ -7459,7 +7533,7 @@ GameObject:
   - component: {fileID: 888788413}
   m_Layer: 0
   m_Name: Balcony View 2
-  m_TagString: Goal
+  m_TagString: GoalUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7474,8 +7548,8 @@ Transform:
   m_LocalPosition: {x: -6.05, y: 4.59, z: 7.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 28
+  m_Father: {fileID: 1200059953}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &894719089
 Prefab:
@@ -8210,7 +8284,7 @@ GameObject:
   - component: {fileID: 1010753915}
   m_Layer: 0
   m_Name: Balcony Corner
-  m_TagString: Goal
+  m_TagString: GoalUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8222,11 +8296,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1010753914}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.952, y: 4.59, z: -2.4639997}
+  m_LocalPosition: {x: 3.9520001, y: 4.59, z: -2.4639997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 17
+  m_Father: {fileID: 1200059953}
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1018386942
 GameObject:
@@ -8238,7 +8312,7 @@ GameObject:
   - component: {fileID: 1018386943}
   m_Layer: 0
   m_Name: Corner Exit
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8253,8 +8327,8 @@ Transform:
   m_LocalPosition: {x: 5.417, y: 0, z: -4.66}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 20
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1026742505 stripped
 Transform:
@@ -8310,7 +8384,7 @@ GameObject:
   - component: {fileID: 1030251858}
   m_Layer: 0
   m_Name: Open 3
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8325,8 +8399,8 @@ Transform:
   m_LocalPosition: {x: 4.14, y: 0, z: 8.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 34
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1030616249
 GameObject:
@@ -8422,7 +8496,7 @@ GameObject:
   - component: {fileID: 1045322190}
   m_Layer: 0
   m_Name: Balcony View 5
-  m_TagString: Goal
+  m_TagString: GoalUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8434,11 +8508,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1045322189}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.595, y: 4.59, z: 7.49}
+  m_LocalPosition: {x: 2.5949998, y: 4.59, z: 7.49}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 31
+  m_Father: {fileID: 1200059953}
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1048216493
 Prefab:
@@ -9018,7 +9092,7 @@ GameObject:
   - component: {fileID: 1135294350}
   m_Layer: 0
   m_Name: Counter 1 (1)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9033,8 +9107,8 @@ Transform:
   m_LocalPosition: {x: 0.592, y: 0, z: 1.6759996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 49
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1139549049
 Prefab:
@@ -9163,7 +9237,7 @@ GameObject:
   - component: {fileID: 1163990932}
   m_Layer: 0
   m_Name: Open 6
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9175,11 +9249,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1163990931}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.674, y: 0, z: 20.365}
+  m_LocalPosition: {x: 1.6740003, y: 0, z: 20.365}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 37
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1165773295
 GameObject:
@@ -9417,6 +9491,46 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 446744, guid: 0b6b08ca5785a45a19c42cc956a4926c, type: 2}
   m_PrefabInternal: {fileID: 2085342408}
+--- !u!1 &1200059952
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 1200059953}
+  m_Layer: 0
+  m_Name: Upstairs
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1200059953
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1200059952}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1574172817}
+  - {fileID: 1642708620}
+  - {fileID: 2025157344}
+  - {fileID: 888788413}
+  - {fileID: 350559339}
+  - {fileID: 74688197}
+  - {fileID: 1045322190}
+  - {fileID: 684795262}
+  - {fileID: 165781905}
+  - {fileID: 1418005649}
+  - {fileID: 1010753915}
+  - {fileID: 24991388}
+  m_Father: {fileID: 1327384276}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1214605501
 Prefab:
   m_ObjectHideFlags: 0
@@ -9581,7 +9695,7 @@ GameObject:
   - component: {fileID: 1243286530}
   m_Layer: 0
   m_Name: Open 6 (6)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9596,8 +9710,8 @@ Transform:
   m_LocalPosition: {x: -11.280001, y: 0, z: 17.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 43
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1244311522
 Prefab:
@@ -9763,7 +9877,7 @@ GameObject:
   - component: {fileID: 1277351722}
   m_Layer: 0
   m_Name: Isle 2
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -9778,8 +9892,8 @@ Transform:
   m_LocalPosition: {x: -5.195, y: -0.4309072, z: 5.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 5
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 37
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1277897923
 Prefab:
@@ -9952,64 +10066,8 @@ Transform:
   m_LocalPosition: {x: 2.3390002, y: 1, z: -11.434999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 397327686}
-  - {fileID: 1386164436}
-  - {fileID: 646653047}
-  - {fileID: 624537105}
-  - {fileID: 1928841147}
-  - {fileID: 1277351722}
-  - {fileID: 1363824511}
-  - {fileID: 85695249}
-  - {fileID: 1958544066}
-  - {fileID: 684795262}
-  - {fileID: 165781905}
-  - {fileID: 178986445}
-  - {fileID: 722202803}
-  - {fileID: 1461094221}
-  - {fileID: 476614795}
-  - {fileID: 2001394039}
-  - {fileID: 1418005649}
-  - {fileID: 1010753915}
-  - {fileID: 24991388}
-  - {fileID: 268577043}
-  - {fileID: 1018386943}
-  - {fileID: 451522059}
-  - {fileID: 1480383206}
-  - {fileID: 1947025162}
-  - {fileID: 670929572}
-  - {fileID: 1574172817}
-  - {fileID: 1642708620}
-  - {fileID: 2025157344}
-  - {fileID: 888788413}
-  - {fileID: 350559339}
-  - {fileID: 74688197}
-  - {fileID: 1045322190}
-  - {fileID: 1781251590}
-  - {fileID: 1895313633}
-  - {fileID: 1030251858}
-  - {fileID: 289532201}
-  - {fileID: 415256884}
-  - {fileID: 1163990932}
-  - {fileID: 811749336}
-  - {fileID: 348443210}
-  - {fileID: 103656842}
-  - {fileID: 343549180}
-  - {fileID: 1982485772}
-  - {fileID: 1243286530}
-  - {fileID: 821319220}
-  - {fileID: 777620857}
-  - {fileID: 333839637}
-  - {fileID: 228520310}
-  - {fileID: 2048693758}
-  - {fileID: 1135294350}
-  - {fileID: 1743550303}
-  - {fileID: 2029385831}
-  - {fileID: 1722213631}
-  - {fileID: 1566521234}
-  - {fileID: 129177265}
-  - {fileID: 341923218}
-  - {fileID: 479521503}
-  - {fileID: 503875537}
+  - {fileID: 1200059953}
+  - {fileID: 211237093}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10205,7 +10263,7 @@ GameObject:
   - component: {fileID: 1363824511}
   m_Layer: 0
   m_Name: Isle 3
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10217,11 +10275,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1363824510}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.648, y: -0.4309072, z: 3.543}
+  m_LocalPosition: {x: -8.648, y: -0.4309072, z: 3.5430002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 6
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 38
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1369219609
 GameObject:
@@ -10273,7 +10331,7 @@ GameObject:
   - component: {fileID: 1386164436}
   m_Layer: 0
   m_Name: Table B
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10288,8 +10346,8 @@ Transform:
   m_LocalPosition: {x: -2.149, y: -0.4309072, z: 13.69}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 1
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1387991022
 Prefab:
@@ -10512,7 +10570,7 @@ GameObject:
   - component: {fileID: 1418005649}
   m_Layer: 0
   m_Name: Balcony Table
-  m_TagString: Goal
+  m_TagString: GoalUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10524,11 +10582,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1418005648}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.38, y: 4.59, z: -2.464}
+  m_LocalPosition: {x: -9.38, y: 4.59, z: -2.4639997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 16
+  m_Father: {fileID: 1200059953}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1420722897
 Prefab:
@@ -10907,7 +10965,7 @@ GameObject:
   - component: {fileID: 1461094221}
   m_Layer: 0
   m_Name: Speaker
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10922,8 +10980,8 @@ Transform:
   m_LocalPosition: {x: -8.351, y: 0, z: 11.959}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 13
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 43
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1461345082
 Prefab:
@@ -11089,7 +11147,7 @@ GameObject:
   - component: {fileID: 1480383206}
   m_Layer: 0
   m_Name: Shelf 2
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11101,11 +11159,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1480383205}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3, y: -0.4309072, z: 2.6820002}
+  m_LocalPosition: {x: -0.29999995, y: -0.4309072, z: 2.6820002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 22
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1485785117
 Prefab:
@@ -11757,7 +11815,7 @@ GameObject:
   - component: {fileID: 1566521234}
   m_Layer: 0
   m_Name: Counter 1 (5)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11769,11 +11827,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1566521233}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.584, y: 0, z: -2.51}
+  m_LocalPosition: {x: 4.584, y: 0, z: -2.5100002}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 53
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1574172816
 GameObject:
@@ -11785,7 +11843,7 @@ GameObject:
   - component: {fileID: 1574172817}
   m_Layer: 0
   m_Name: Balcony Stairs 1
-  m_TagString: Goal
+  m_TagString: GoalUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11797,11 +11855,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1574172816}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.8, y: 4.59, z: -0.162}
+  m_LocalPosition: {x: -1.8, y: 4.59, z: -0.1619997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 25
+  m_Father: {fileID: 1200059953}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1574220669
 GameObject:
@@ -12317,7 +12375,7 @@ GameObject:
   - component: {fileID: 1642708620}
   m_Layer: 0
   m_Name: Balcony Stairs 2
-  m_TagString: Goal
+  m_TagString: GoalUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12332,8 +12390,8 @@ Transform:
   m_LocalPosition: {x: -8.6, y: 4.59, z: -0.1619997}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 26
+  m_Father: {fileID: 1200059953}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1645007449
 GameObject:
@@ -13119,7 +13177,7 @@ GameObject:
   - component: {fileID: 1722213631}
   m_Layer: 0
   m_Name: Counter 1 (4)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13131,11 +13189,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1722213630}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.895, y: 0, z: -4.85}
+  m_LocalPosition: {x: -1.895, y: 0, z: -4.8500004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 52
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1728484574
 Prefab:
@@ -13243,7 +13301,7 @@ GameObject:
   - component: {fileID: 1743550303}
   m_Layer: 0
   m_Name: Counter 1 (2)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13255,11 +13313,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1743550302}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.592, y: 0, z: -0.295}
+  m_LocalPosition: {x: 0.592, y: 0, z: -0.29500008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 50
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1747118969 stripped
 Transform:
@@ -13453,7 +13511,7 @@ GameObject:
   - component: {fileID: 1781251590}
   m_Layer: 0
   m_Name: Open 1
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13468,8 +13526,8 @@ Transform:
   m_LocalPosition: {x: 3.3510003, y: 0, z: 6.139}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 32
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1788589495
 GameObject:
@@ -14266,7 +14324,7 @@ GameObject:
   - component: {fileID: 1895313633}
   m_Layer: 0
   m_Name: Open 2
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14281,8 +14339,8 @@ Transform:
   m_LocalPosition: {x: 4.14, y: 0, z: 8.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 33
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1908161094 stripped
 Transform:
@@ -14430,7 +14488,7 @@ GameObject:
   - component: {fileID: 1928841147}
   m_Layer: 0
   m_Name: Isle 1
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14445,8 +14503,8 @@ Transform:
   m_LocalPosition: {x: -2.02, y: -0.4309072, z: 5.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 4
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1931609111
 Prefab:
@@ -15177,11 +15235,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1947025161}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.448, y: -0.4309072, z: 3.174}
+  m_LocalPosition: {x: 4.448, y: -0.4309072, z: 3.1739998}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 23
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1950891393
 GameObject:
@@ -15233,7 +15291,7 @@ GameObject:
   - component: {fileID: 1958544066}
   m_Layer: 0
   m_Name: Counter 2
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15245,11 +15303,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1958544065}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.024, y: 0, z: 0.159}
+  m_LocalPosition: {x: 3.0239997, y: 0, z: 0.1590004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 8
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1959712191
 GameObject:
@@ -15668,7 +15726,7 @@ GameObject:
   - component: {fileID: 1982485772}
   m_Layer: 0
   m_Name: Open 6 (5)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15680,11 +15738,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1982485771}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.28, y: 0, z: 22.07}
+  m_LocalPosition: {x: -11.280001, y: 0, z: 22.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 42
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1983110248
 Prefab:
@@ -15842,7 +15900,7 @@ GameObject:
   - component: {fileID: 2001394039}
   m_Layer: 0
   m_Name: Speaker Corner
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15857,8 +15915,8 @@ Transform:
   m_LocalPosition: {x: -8.351, y: 0, z: 23.354}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 15
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 45
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2004745962
 GameObject:
@@ -16006,7 +16064,7 @@ GameObject:
   - component: {fileID: 2025157344}
   m_Layer: 0
   m_Name: Balcony View 1
-  m_TagString: Goal
+  m_TagString: GoalUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16021,8 +16079,8 @@ Transform:
   m_LocalPosition: {x: -8.6, y: 4.59, z: 7.24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 27
+  m_Father: {fileID: 1200059953}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2029385830
 GameObject:
@@ -16034,7 +16092,7 @@ GameObject:
   - component: {fileID: 2029385831}
   m_Layer: 0
   m_Name: Counter 1 (3)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16049,8 +16107,8 @@ Transform:
   m_LocalPosition: {x: -1.895, y: 0, z: -0.29500008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 51
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2030325673
 GameObject:
@@ -16182,7 +16240,7 @@ GameObject:
   - component: {fileID: 2048693758}
   m_Layer: 0
   m_Name: Open 6 (11)
-  m_TagString: Goal
+  m_TagString: GoalDown
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16197,8 +16255,8 @@ Transform:
   m_LocalPosition: {x: 2.38, y: 0, z: 8.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1327384276}
-  m_RootOrder: 48
+  m_Father: {fileID: 211237093}
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2049712079
 Prefab:

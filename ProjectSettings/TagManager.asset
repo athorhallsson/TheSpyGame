@@ -12,6 +12,8 @@ TagManager:
   - Assist
   - InstructionsText
   - GunInstructionsText
+  - GoalUp
+  - GoalDown
   layers:
   - Default
   - TransparentFX

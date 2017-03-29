@@ -54,11 +54,9 @@ public class PlayerShooting : NetworkBehaviour
 
 				if (!gunRaised) {
 					gunRaised = true;
-					this.parentPlayerAnim.animator.SetBool ("Shooting", true);
 					CmdDrawGun();
 				} else {
 					gunRaised = false;
-					this.parentPlayerAnim.animator.SetBool ("Shooting", false);
 					CmdHolsterGun();
 				}
 			}
@@ -89,12 +87,20 @@ public class PlayerShooting : NetworkBehaviour
 
 	[Command]
 	void CmdDrawGun() {
+		this.parentPlayerAnim.animator.SetBool ("Shooting", true);
 		RpcDrawGun();
 	}
 
 	[Command]
 	void CmdHolsterGun() {
+		this.parentPlayerAnim.animator.SetBool ("Shooting", false);
 		RpcHolsterGun();
+	}
+
+	[Command]
+	void CmdFireShot() {
+		this.parentPlayerAnim.animator.SetTrigger("Shoot");
+		FireGun();
 	}
 
 	private void FireGun() {
@@ -138,11 +144,6 @@ public class PlayerShooting : NetworkBehaviour
 		Debug.DrawRay(camTransform.position, camTransform.forward * 3f, Color.red, 1f);
 	}
 
-	[Command]
-	void CmdFireShot() {
-		FireGun();
-	}
-
 	private void UpdateGunParent() {
 		Transform hand = this.GetComponent<Player>().model.transform.Find("master/Reference/Hips/Spine/Spine1/Spine2/RightShoulder/RightArm/RightForeArm/RightHand");
 		gun.transform.parent = hand;
@@ -169,7 +170,6 @@ public class PlayerShooting : NetworkBehaviour
 	[ClientRpc]
 	void RpcHolsterGun() {
 		player.RotateBack ();
-		this.parentPlayerAnim.animator.SetBool("Shooting", false);
 		Invoke ("HideGun", raiseCooldown);
 	}
 
@@ -179,7 +179,6 @@ public class PlayerShooting : NetworkBehaviour
 
 	[ClientRpc]
 	void RpcProcessShotEffects(Vector3 point, bool hit) {
-		this.parentPlayerAnim.animator.SetTrigger("Shoot");
 		shotEffects.PlayShotEffects ();
 
 		if (hit) {
@@ -191,7 +190,6 @@ public class PlayerShooting : NetworkBehaviour
 
 	[ClientRpc]
 	void RpcProcessMissEffects() {
-		this.parentPlayerAnim.animator.SetTrigger("Shoot");
 		shotEffects.PlayShotEffects ();
 	}
 }

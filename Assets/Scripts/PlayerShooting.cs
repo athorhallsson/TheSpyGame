@@ -70,7 +70,7 @@ public class PlayerShooting : NetworkBehaviour
 
 	void ShowInstructions() {
 		instructions.text = "Press Q to draw the gun";
-		Invoke ("HideInstructions", 1.0f);
+		Invoke ("HideInstructions", 1.5f);
 	}
 
 	void HideInstructions() {

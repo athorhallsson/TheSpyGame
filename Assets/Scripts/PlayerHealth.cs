@@ -59,8 +59,8 @@ public class PlayerHealth : NetworkBehaviour
 		// Show GO text on all players
 		RpcShowGameOverText (player.playerName + " was eliminated");
 
-		// Wait 5 seconds and kick back to Lobby once
-		Invoke ("EndGame", 5.0f);
+		// Wait 8 seconds and kick back to Lobby once
+		Invoke ("EndGame", 10.0f);
 	}
 
 	[ClientRpc]
